@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /public
+
+ErrorDocument 404 /404.php
+
+# =====================
+# リダイレクト始まり
+
+# RewriteRule 正規表現パターン 置換パターン [L,R=301]
+# RewriteRule ^public/$ /mvc/bbs/0623/public/contact.php [L,R=301]
+
+# リダイレクト終わり
+# =====================
+
