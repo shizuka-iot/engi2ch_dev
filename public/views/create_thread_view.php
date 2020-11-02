@@ -28,7 +28,7 @@
 <div class="center main">
 	<div class="container column">
 		<section class="create_thread_area">
-			<h2><i class="fas fa-plus"></i>新規スレッド作成</h2>
+			<h2><i class="fas fa-pencil-alt"></i>新規スレッド作成</h2>
 			<div class="create_thread_form_wrap">
 				<form class="column" method="post" action="#create_thread_form"
 				 id="create_thread_form" enctype="multipart/form-data">
@@ -66,7 +66,7 @@
 					<input type="file" name="thread_img" accept="image/*" id="myfile"><br>
 				  <img id="img1" style="width:200px;height:auto;" />
 
-					<button type="submit" name="create_thread">スレッドを作成する<i class="far fa-plus-square"></i></button><br>
+					<button type="submit" name="create_thread">スレッドを作成する<i class="fas fa-pencil-alt"></i></button><br>
 
 				</form>
 			</div>

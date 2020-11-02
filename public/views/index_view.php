@@ -184,7 +184,7 @@
 				<?php if( !isset($_GET['thread']) ):?>
 					<a href="create_thread.php" id="jump_create_thread_form">
 					<div class="jump_create_thread center">
-						スレッドを作成する<i class="far fa-plus-square"></i>
+						スレッドを作成する<i class="fas fa-pencil-alt"></i>
 					</div>
 				<?php endif;?>
 					</a>
