@@ -12,19 +12,6 @@
 </head>
 <body>
 
-<header class="center">
-	<div class="container row between">
-
-		<div class="header_logo_wrap">
-			<a href="<?=h(SITE_URL)?>">
-				<h1 class="color_lb"><?=h(SITE_TITLE)?></h1>
-				<p class="color_lb fs_13"><?=h(SITE_SUBTITLE)?></p>
-			</a>
-		</div>
-
-	</div>
-</header>
-
 <div class="center main">
 	<div class="container column">
 		<section class="create_thread_area">
@@ -37,11 +24,13 @@
 					 value="<?=h($_SESSION['token'])?>">
 
 					<?php $IndexCtr->showError('thread_title')?>
+					<p><span class="require">必須</span> タイトルを140文字以内で入力してください </p>
 					<input type="text" name="thread_title" placeholder="タイトル (必須)"
 					 value="<?=h($IndexCtr->getValue("thread_title"))?>">
+					<br>
 
 					<?php $IndexCtr->showError('cat_id')?>
-					<p>・カテゴリを選択してください (必須)</p>
+					<p><span class="require">必須</span> カテゴリを選択してください</p>
 					<div class="select_category row wrap">
 					<?php foreach($categories as $category):?>
 						<div class="each_category">
@@ -52,17 +41,21 @@
 						</div>
 					<?php endforeach;?>
 					</div>
+					<br>
 
 					<?php $IndexCtr->showError('thread_auther')?>
+					<p><span class="optional">任意</span> 名前を50文字以内で入力してください。未入力の場合は"野生の名無しさん"と自動入力されます </p>
 					<input type="text" name="thread_auther" placeholder="名前 (任意)"
 					 value="<?=h($IndexCtr->getValue("thread_auther"))?>">
+					<br>
 
 					<?php $IndexCtr->showError('thread_body')?>
+					<p><span class="require">必須</span> 本文を1000文字以内で入力してください </p>
 					<textarea name="thread_body" placeholder="本文 (必須)"><?=h($IndexCtr->getValue("thread_body"))?></textarea>
 					<br>
 
 					<?php $IndexCtr->showError('img')?>
-					<p>・画像を選択してください (必須)</p>
+					<p><span class="require">必須</span> 画像を選択してください </p>
 					<input type="file" name="thread_img" accept="image/*" id="myfile"><br>
 				  <img id="img1" style="width:200px;height:auto;" />
 
@@ -73,14 +66,3 @@
 		</section>
 	</div>
 </div>
-
-<footer class="center">
-	<div class="container">
-		<a href="contact.php">
-			<p>お問い合わせ</p>
-		</a>
-		<div>
-			<p>© 2020 shizuka</p>
-		</div>
-	</div>
-</footer>

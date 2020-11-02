@@ -1,30 +1,11 @@
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?=h(SITE_TITLE)?></title>
-	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
-	<!-- font awesome cssファイルなのでヘッド内で読み込む-->
-
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-	<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-<header class="center">
-	<div class="container row between">
-
-		<div class="header_logo_wrap">
-			<a href="<?=h(SITE_URL)?>">
-				<h1 class="color_lb"><?=h(SITE_TITLE)?></h1>
-				<p class="color_lb fs_13"><?=h(SITE_SUBTITLE)?></p>
-			</a>
-		</div>
-
+<div class="header_search">
+	<div class="container">
+		<form method="get" action="" class="row">
+			<input type="text" name="search" size="1" placeholder="スレタイを検索">
+			<button type="submit"><i class="fas fa-search"></i></button>
+		</form>
 	</div>
-</header>
+</div>
 
 <div class="center main">
 	<div class="container column">
@@ -195,9 +176,8 @@
 								<button type="submit"><i class="fas fa-search"></i></button>
 							</form>
 						</div>
-						<a href="search.php">検索ページ</a>
 						<h3>カテゴリ</h3>
-						<ul>
+						<ul class="select_category_list">
 							<?php foreach($categories as $category):?>
 								<a href="?category=<?=h($category->cat_name)?>"><li class="color_lb">
 								<?=h($category->cat_name.' ('.$IndexCtr->getCountCategoryFromId($category->id).')')?>
@@ -213,14 +193,3 @@
 
 	</div>
 </div>
-
-<footer class="center">
-	<div class="container">
-		<a href="contact.php">
-			<p>お問い合わせ</p>
-		</a>
-		<div>
-			<p>© 2020 shizuka</p>
-		</div>
-	</div>
-</footer>
