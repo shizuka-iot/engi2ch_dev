@@ -1,7 +1,8 @@
-RewriteEngine On
-RewriteBase /public
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+# RewriteBase /public
 
-ErrorDocument 404 /404.php
+	ErrorDocument 404 /404.php
 
 # =====================
 # リダイレクト始まり
@@ -9,6 +10,12 @@ ErrorDocument 404 /404.php
 # RewriteRule 正規表現パターン 置換パターン [L,R=301]
 # RewriteRule ^public/$ /mvc/bbs/0623/public/contact.php [L,R=301]
 
+# RewriteCond は条件指定　!は否定 -fはファイルが存在したらtrue
+RewriteRule ^contact.php(.+)$ /404.php [L,R=301]
+
+RewriteRule ^create_thread.php(.+)$ /404.php [L,R=301]
+
 # リダイレクト終わり
 # =====================
 
+</IfModule>
