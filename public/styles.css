@@ -337,6 +337,7 @@ nav h3 {
 	padding: 1rem;
 	flex: 1;
 	/* width: 100%; */
+	flex-basis: 100%;
 }
 
 .reply_form button {
@@ -549,6 +550,15 @@ nav h3 {
 	margin-right: 1rem;
 }	
 
+.main_contents {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+	.container {
+		width: 100%;
+	}
+
 @media screen and (min-width: 481px) {
 	.header_logo_wrap h1 {
 		font-size: 1.8rem;
@@ -564,7 +574,6 @@ nav h3 {
 		margin: 0;
 	}
 	.main_contents {
-		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		order: 1;
