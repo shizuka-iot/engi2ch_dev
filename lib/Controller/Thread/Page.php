@@ -127,7 +127,7 @@ class Page extends \Mvc0623\Controller\Thread
 EOD;
 
 			/* prev */
-			$html .= '<div class="">';
+			$html .= '<div class="prev_page_wrap">';
 			if( $this->page > 1 )
 			{
 				/*
@@ -138,26 +138,28 @@ EOD;
 				// ヒアドキュメント内で演算は無理なので外で演算する
 				$prev_page = $this->page - 1;
 				$html .= <<<EOL
-				<a class="prev_page" href="?{$word}page={$prev_page}">
-					<div class="center">前へ</div>
+				<a class="prev_page_link" href="?{$word}page={$prev_page}">
+					<div class="center prev_page">前へ</div>
 				</a>
 EOL;
 			}
 			$html .= '</div>';
 
-			$html.= '<div class="row page_number">';
+
+			/* ページリンクを格納する領域 */
+			$html.= '<div class="row page_number_wrap">';
 
 			/* １ページ */
 			if( $this->page === 1 )
 			{
 				$html .= '<span class="current_page">';
-				$html .= '<div class="center">1</div>';
+				$html .= '<div class="center first_page page_number">1</div>';
 				$html .= '</span>';
 			}
 			else
 			{
 				$html .= '<a href="?'.$word.'page=1">';
-				$html .= '<div class="center">1</div>';
+				$html .= '<div class="center first_page page_number">1</div>';
 				$html .= '</a>';
 			}
 
@@ -165,10 +167,12 @@ EOL;
 			if( ($this->page - 2) > 2)
 			{
 				$html .= '<span class="space">';
-				$html .= '<div class="center">...</div>';
+				$html .= '<div class="center page_span page_number">...</div>';
 				$html .= '</span>';
 			}
 
+
+			/* ループでページリンクを生成 */
 			for($i=$this->page - 2; $i<=$this->page + 2; $i++)
 			{
 				if($i > 1 && $i < $this->_totalPages)
@@ -176,13 +180,13 @@ EOL;
 					if( $i === $this->page )
 					{
 						$html .= '<span class="current_page">';
-						$html .= '<div class="center">'.$i.'</div>';
+						$html .= '<div class="center page_number">'.$i.'</div>';
 						$html .= '</span>';
 					}
 					else
 					{
 						$html .= '<a href="?'.$word.'page='.$i.'">';
-						$html .= '<div class="center">'.$i.'</div>';
+						$html .= '<div class="center page_number">'.$i.'</div>';
 						$html .= '</a>';
 					}
 				}
@@ -192,7 +196,7 @@ EOL;
 			if( $this->_totalPages > ($this->page + 3) )
 			{
 				$html .= '<span class="space">';
-				$html .= '<div class="center">...</div>';
+				$html .= '<div class="center page_span page_number">...</div>';
 				$html .= '</span>';
 			}
 
@@ -202,13 +206,13 @@ EOL;
 				if( $this->page === $this->_totalPages )
 				{
 					$html .= '<span class="current_page">';
-					$html .= '<div class="center">'.$this->_totalPages.'</div>';
+					$html .= '<div class="center last_page page_number">'.$this->_totalPages.'</div>';
 					$html .= '</span>';
 				}
 				else
 				{
 					$html .= '<a href="?'.$word.'page='.$this->_totalPages.'">';
-					$html .= '<div class="center">'.$this->_totalPages.'</div>';
+					$html .= '<div class="center last_page page_number">'.$this->_totalPages.'</div>';
 					$html .= '</a>';
 				}
 			}
@@ -216,11 +220,11 @@ EOL;
 
 
 			/* 次へ */
-			$html .= '<div class="">';
+			$html .= '<div class="next_page_wrap">';
 			if( $this->page < $this->_totalPages )
 			{
-				$html .= '<a class="next_page" href="?'.$word.'page='.($this->page+1).'">';
-				$html .= '<div class="center">次へ</div>';
+				$html .= '<a class="next_page_link" href="?'.$word.'page='.($this->page+1).'">';
+				$html .= '<div class="center next_page">次へ</div>';
 				$html .= '</a>';
 			}
 			$html .= '</div>';

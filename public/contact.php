@@ -91,7 +91,11 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST')
 	} 
 }
 
+
+include 'views/layout/head.php';
+include 'views/layout/header.php';
 include 'views/contact_view.php';
+include 'views/layout/footer.php';
 
 ?>
 

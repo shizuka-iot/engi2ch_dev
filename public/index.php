@@ -13,7 +13,10 @@ $categories = $IndexCtr->getCategoryInfo();
 // インデックスコントローラーのメソッドを呼び出してるが定義されているのは親クラス。
 $threads = $IndexCtr->getThreads();
 
+include 'views/layout/head.php';
+include 'views/layout/header.php';
 include 'views/index_view.php';
+include 'views/layout/footer.php';
 ?>
 
 	

@@ -127,7 +127,7 @@
 					<?php if ($threads):?>
 					<?php foreach($threads as $thread):?>
 					<a class="each_page_link" href="<?=h(SITE_URL."?thread=".$thread->no)?>">
-						<div class="thread row">
+						<div class="each_thread row">
 
 							<div class="thread_left">
 								<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag))?>">

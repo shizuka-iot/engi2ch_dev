@@ -6,7 +6,9 @@ $IndexCtr = new \Mvc0623\Controller\Thread\Index();
 $IndexCtr->run();
 $categories = $IndexCtr->getCategoryInfo();
 
+include 'views/layout/header.php';
 include 'views/create_thread_view.php';
+include 'views/layout/footer.php';
 ?>
 
 	

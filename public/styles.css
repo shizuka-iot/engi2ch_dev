@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #eee;
+	background-color: #e6e6fa;
 	font-family: 'M PLUS 1p', sans-serif;
 }
 button {
@@ -265,6 +265,7 @@ footer ul {
 
 nav {
 	background-color: #fff;
+	border-radius: 4px;
 	margin-top: 1rem;
 	padding: 1rem;
 	width: 12rem;
@@ -323,16 +324,19 @@ nav h3 {
 	padding: 1rem;
 }
 
-.each_page_link:hover {
+.each_thread:hover {
 	cursor: pointer;
 	opacity: 0.6;
 }
 
 .thread_area {
 	background-color: #fff;
-	margin-top: 1rem;
+	border-radius: 4px;
+	margin: 0.5rem;
+	margin-bottom: 0;
 	padding: 1rem;
 	flex: 1;
+	/* width: 100%; */
 }
 
 .reply_form button {
@@ -371,7 +375,7 @@ nav h3 {
 	opacity: 0.8;
 }
 
-.thread {
+.each_thread {
 	border-bottom: 1px solid #ddd;
 	margin-bottom: 0.8rem;
 	padding-bottom: 0.8rem;
@@ -396,16 +400,17 @@ nav h3 {
 .page {
 	margin-bottom: 1rem;
 }
-.page_numbers .center {
+
+.page_number {
 	width: 2rem;
 	height: 2rem;
 	background-color: #eee;
-	border-radius: 3px;
+	border-radius: 4px;
 	margin-right: 5px;
 }
 
-.page_number {
-
+.page_number_wrap {
+	display: none;
 }
 .current_page .center {
 	background-color: #aaa;
@@ -413,15 +418,24 @@ nav h3 {
 .next_page_wrap, .prev_page_wrap {
 	width: 6rem;
 }
+/*
 .next_page .center, .prev_page .center {
-	background-color: #ccc;
-	/* width: 3rem; */
+	background-color: #778899;
+	width: 3rem;
 }
-.next_page {
-	margin-left: auto;
+*/
+.next_page_link {
+	/* display: inline-block; */
+	width: 100%;
 }
-.prev_page {
-	margin-right: auto;
+.next_page, .prev_page {
+	background-color: #c0c0c0;
+	border-radius: 4px;
+	height: 2rem;
+}
+.prev_page_link {
+	/* display: inline-block; */
+	width: 100%;
 }
 .space .center {
 	background-color: #fff;
@@ -558,11 +572,16 @@ nav h3 {
 	.container {
 		width: 1000px;
 	}
+	/*
 	.next_page .center, .prev_page .center {
 		width: 6rem;
 	}
+	*/
 	.create_thread_area button {
 		font-size: 1.8rem;
+	}
+	.page_number_wrap {
+		display: flex;
 	}
 	.sort {
 		margin-bottom: 0;
@@ -585,5 +604,9 @@ nav h3 {
 	.thread {
 		margin-bottom: 1rem;
 		padding-bottom: 1rem;
+	}
+	.thread_area {
+		margin: 0;
+		margin-top: 1rem;
 	}
 }/* ここまでスマートフォン向け+共通の設定 */
