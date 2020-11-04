@@ -93,58 +93,6 @@ class Thread extends \Mvc0623\Controller
 			exit;
 		}
 	}
-	/*********************************************
-		ログインと新規登録
-	*********************************************/
-	protected function login()
-	{
-		$val = $this->_validateLogin();
-		if( $this->hasError() )
-		{
-			$this->setValue('email', $val['email']);
-			return;
-		}
-		else
-		{
-			try// user情報を取得するためのトライ
-			{
-				$userModel = new \Mvc0623\Model\User();
-				$user = $userModel->login($val);
-			}
-			catch(\Exception $e)
-			{
-				$this->setError('login', $e->getMessage());
-				return;
-			}
-
-			session_regenerate_id(true);
-			$_SESSION['me'] = $user;
-
-			header('Location:'.SITE_URL.'/home.php');
-			exit;
-		}
-	}
-
-	private function _validateLogin()
-	{
-		$this->validateToken();
-		if( !isset($_POST['email']) || !isset($_POST['password']) )
-		{
-			echo '不正な値です';
-			exit;
-		}	
-		if($_POST['email'] === '')
-		{
-			$this->setError('email', 'メールアドレスを入力');
-		}
-		if($_POST['password'] === '')
-		{
-			$this->setError('password', 'パスワードを入力');
-		}
-		$email = (string)filter_input(INPUT_POST, 'email');
-		$password = (string)filter_input(INPUT_POST, 'password');
-		return ['email'=>$email, 'password'=>$password];
-	}
 
 	/************************
 		返信処理

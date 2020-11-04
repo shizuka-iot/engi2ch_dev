@@ -9,10 +9,6 @@ class Index extends \Mvc0623\Controller\Thread
 
 		if( $_SERVER['REQUEST_METHOD'] === 'POST' )
 		{
-			if( isset($_POST['login']) )
-			{
-				$this->login();
-			}
 			if( isset($_POST['create_thread']) )
 			{
 				$this->createThread();
