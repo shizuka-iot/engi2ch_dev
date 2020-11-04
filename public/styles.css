@@ -1,7 +1,19 @@
 body {
 	margin: 0;
-	background-color: #e6e6fa;
+	background-color: #00afcc;
 	font-family: 'M PLUS 1p', sans-serif;
+}
+
+.about_wrap {
+	background-color: #fff;
+	margin: 0.5rem;
+	padding: 1rem;
+}
+
+.agreement_wrap {
+	background-color: #fff;
+	margin: 0.5rem;
+	padding: 1rem;
 }
 button {
 	cursor: pointer;
@@ -25,6 +37,7 @@ button {
 	width: 100%;
 	margin: 0;
 }
+
 .header_search form {
 	margin: 0;
 }
@@ -622,4 +635,12 @@ nav h3 {
 		margin: 0;
 		margin-top: 1rem;
 	}
+.contact_form_wrap {
+	width: 100%;
+}
+
+.contact_form input ,
+.contact_form textarea {
+	width: 80%;
+}
 }/* ここまでスマートフォン向け+共通の設定 */
