@@ -575,8 +575,22 @@ nav h3 {
 	.container {
 		width: 100%;
 	}
+.contact_form {
+	width: 100%;
+}
+.contact_form_wrap {
+	background-color: #fff;
+	width: 100%;
+}
 
-@media screen and (min-width: 481px) {
+.contact_form input ,
+.contact_form textarea {
+	width: 80%;
+}
+
+/* ここからPCビュー */
+@media screen and (min-width: 481px) 
+{
 	.header_logo_wrap h1 {
 		font-size: 1.8rem;
 	}
@@ -635,12 +649,7 @@ nav h3 {
 		margin: 0;
 		margin-top: 1rem;
 	}
-.contact_form_wrap {
-	width: 100%;
-}
-
-.contact_form input ,
-.contact_form textarea {
-	width: 80%;
-}
-}/* ここまでスマートフォン向け+共通の設定 */
+	body {
+		background-color: #82cddd;
+	}
+}/* ここまでPCビュー */
