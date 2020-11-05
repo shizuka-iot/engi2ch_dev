@@ -1,4 +1,6 @@
 <script src="https://www.google.com/recaptcha/api.js?render=6LedYN8ZAAAAAFuh-xKgM4Jztp6EUsTwQv0T9vDQ"></script>
+<script src="js/recaptcha.js"></script>
+
 <div class="center main">
 	<div class="container column center">
 		<div class="contact_form_wrap center column">
@@ -29,4 +31,3 @@
 		</div>
 	</div>
 </div>
-<script src="../js/recaptcha.js"></script>
