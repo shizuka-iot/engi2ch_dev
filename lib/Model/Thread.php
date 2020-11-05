@@ -55,32 +55,51 @@ class Thread extends \Mvc0623\Model
 	{
 		if( !empty($val['category']) )
 		{
-			return $this->getThreadsFromCategory($val['category'], $val['page']);
+			return $this->getThreadsFromCategory($val['category'], $val['page'], $val['sort']);
 		}
 		else if(isset($val['search']))
 		{
-			return $this->getThreadsFromSearch($val['search'], $val['page']);
+			return $this->getThreadsFromSearch($val['search'], $val['page'], $val['sort']);
 		}
 		else
 		{
-			return $this->getAllThreads($val['page']);
+			return $this->getAllThreads($val['page'], $val['sort']);
 		}
 	}
 
 	/****************************************************
 								全スレッドを取得
 	****************************************************/
-	public function getAllThreads($page)
+	public function getAllThreads($page, $sort)
 	{
+		switch ($sort)
+		{
+		case 'new':
+			$order = 'order by no desc';
+			break;
+		case 'old':
+			$order = 'order by no asc';
+			break;
+		case 'popular':
+			$order = 'order by no asc';
+			break;
+		case 'comment':
+			$order = 'order by no asc';
+			break;
+		default:
+			$order = 'order by no desc';
+		}
 		$offset = THREADS_PER_PAGE * ($page - 1);
-		$sql = sprintf(
+		// $sql = sprintf(
+		$sql = 
 			'select
-			no, user_id, auther, title, body, cat_id, fileName,
-			thumbnail_flag, thread.created_at, thread.updated_at, 
-			category.id, cat_name
+			thread.no, thread.auther, thread.title, thread.body, cat_id, thread.fileName,
+			thread.thumbnail_flag, thread.created_at, thread.updated_at, 
+			category.id, category.cat_name
 			from thread left outer join category on cat_id = category.id 
-			where delete_flag = 0 
-			order by no desc limit %d offset %d', THREADS_PER_PAGE, $offset);
+			where thread.delete_flag = 0 ';
+		$sql .= sprintf('
+			%s limit %d offset %d', $order, THREADS_PER_PAGE, $offset);
 		$stmt = $this->pdo->query($sql);
 
 		if (!$stmt)
@@ -95,7 +114,7 @@ class Thread extends \Mvc0623\Model
 	/****************************************************
 								スレッドをタイトル検索
 	****************************************************/
-	public function getThreadsFromSearch($search, $page)
+	public function getThreadsFromSearch($search, $page, $sort)
 	{
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		$word = '%'.$search.'%';
@@ -114,7 +133,7 @@ class Thread extends \Mvc0623\Model
 	/****************************************************
 								スレッドをカテゴリ別で取得
 	****************************************************/
-	public function getThreadsFromCategory($category, $page)
+	public function getThreadsFromCategory($category, $page, $sort)
 	{
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		$sql = 'select

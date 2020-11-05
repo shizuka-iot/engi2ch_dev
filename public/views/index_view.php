@@ -93,11 +93,11 @@
 							<div class="sort_wrap">
 								<div class="sort">
 									<label for="sort_period" class="fs_14">並べ替え:</label>
-									<select id="sort_period" name="">
-										<option value="">新着順</option>
-										<option value="">古い順</option>
-										<option value="">評価の高い順</option>
-										<option value="">コメントの多い順</option>
+									<select id="sort_period" name="sort">
+										<option value="new" <?php if(isset($_GET['sort']) && $_GET['sort']==='new')echo 'selected';?>>新着順</option>
+										<option value="old" <?php if(isset($_GET['sort']) && $_GET['sort']==='old')echo 'selected';?>>古い順</option>
+										<option value="popular" <?php if(isset($_GET['sort']) && $_GET['sort']==='popular')echo 'selected';?>>評価の高い順</option>
+										<option value="comment <?php if(isset($_GET['sort']) && $_GET['sort']==='comment')echo 'selected';?>">コメントの多い順</option>
 									</select>
 
 								</div>

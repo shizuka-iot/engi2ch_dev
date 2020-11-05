@@ -11,6 +11,7 @@ class Thread extends \Mvc0623\Controller
 	// filter_inputを使ってもいいかもしれない。
 	private function _validateGetValue()
 	{
+		$sort = filter_input(INPUT_GET, 'sort');
 		$category = filter_input(INPUT_GET, 'category');
 		$search = filter_input(INPUT_GET, 'search');
 
@@ -19,7 +20,12 @@ class Thread extends \Mvc0623\Controller
 		{
 			$this->page = 1;
 		}
-		return ['category'=>$category, 'search'=>$search, 'page'=>$this->page];
+		return [
+			'sort'=>$sort, 
+			'category'=>$category, 
+			'search'=>$search, 
+			'page'=>$this->page,
+		];
 	}
 
 
