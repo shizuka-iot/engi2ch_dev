@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__.'/../config/config.php';
+require __DIR__.'/../lib/recaptcha.php';
 
 // POSTされたデータがあれば変数に格納、なければ NULL（変数の初期化）
 $name = isset( $_POST[ 'name' ] ) ? $_POST[ 'name' ] : NULL;

@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="styles.css">
+	<script src="https://www.google.com/recaptcha/api.js?render=6LedYN8ZAAAAAFuh-xKgM4Jztp6EUsTwQv0T9vDQ"></script>
 </head>
 
 <body>

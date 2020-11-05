@@ -2,7 +2,8 @@
 	<div class="container column center">
 		<div class="contact_form_wrap center column">
 			<h2>お問い合わせ</h2>
-			<form action="" method="post" class="contact_form">
+			<form action="" method="post" class="contact_form center column">
+				<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 				<br>
 				<p>メールアドレス <span class="require">必須</span></p>
 				<input type="text" name="email" placeholder="メールアドレス" required>
@@ -27,4 +28,4 @@
 		</div>
 	</div>
 </div>
-
+<script src="../js/recaptcha.js"></script>
