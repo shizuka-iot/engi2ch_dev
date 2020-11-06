@@ -669,6 +669,7 @@ nav h3 {
 		*/
 	}
 	.side_wrap {
+		margin: 0;
 		margin-left: 1rem;
 		margin-top: 1rem;
 		width: 18rem;
