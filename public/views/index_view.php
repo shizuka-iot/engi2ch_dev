@@ -71,12 +71,17 @@
 								value="<?php isset($_SESSION['me']->id) ?
 												 $_SESSION['me']->id: null ?>">
 
-								<input type="text" name="reply_auther" placeholder="名前"
-								 value="<?=h($IndexCtr->getValue("reply_auther"))?>">
-
-								<?php $IndexCtr->showError('reply_body')?>
-								<textarea name="reply_body" placeholder="本文"><?=h($IndexCtr->getValue("reply_body"))?></textarea>
-								<br>
+								<div class="reply_input_wrap">
+									<p class="fs_12">名前を入力してください。</p>
+									<p class="fs_12">未入力の場合は"野生の名無しさん"と自動入力されます。</p>
+									<input type="text" name="reply_auther" placeholder="名前"
+									 value="<?=h($IndexCtr->getValue("reply_auther"))?>">
+								</div>
+								<div class="reply_input_wrap">
+									<p class="fs_12">コメントを1000文字以内で入力してください。</p>
+									<?php $IndexCtr->showError('reply_body')?>
+									<textarea name="reply_body" placeholder="本文"><?=h($IndexCtr->getValue("reply_body"))?></textarea>
+								</div>
 
 								<button type="submit" name="reply">コメントする</button><br>
 							</form>
@@ -163,11 +168,13 @@
 			<div class="side_wrap column">
 				<div class="side">
 					<?php if( !isset($_GET['thread']) ):?>
-						<a href="create_thread.php" id="jump_create_thread_form" class="color_wh">
-							<div class="jump_create_thread center">
-									スレッドを作成する<i class="fas fa-pencil-alt"></i>
-							</div>
-						</a>
+						<div class="jump_create_thread_wrap">
+							<a href="create_thread.php" id="jump_create_thread_form" class="color_wh">
+								<div class="jump_create_thread center">
+										スレッドを作成する<i class="fas fa-pencil-alt"></i>
+								</div>
+							</a>
+						</div>
 					<?php endif;?>
 					<nav class="column">
 						<div class="search_form_wrap">

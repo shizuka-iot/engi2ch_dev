@@ -1,6 +1,10 @@
 body {
 	margin: 0;
-	background-color: #00afcc;
+	/* 
+	background-color: #00afcc; 
+	background-color: #a3b9e0;
+	*/
+	background-color: #dbedff;
 	font-family: 'M PLUS 1p', sans-serif;
 }
 
@@ -251,8 +255,8 @@ a { text-decoration: none;}
 }
 
 header, footer {
-	background-color: #696969;
-	padding: 1rem 0;
+	background-color: #001e33;
+	padding: 0.5rem 0;
 	padding-bottom: 0;
 }
 .header_logo_wrap a:hover {
@@ -264,21 +268,28 @@ footer {
 }
 footer li {
 	padding: 0.2rem;
+	/*
 	display: list-item;
 	list-style: disc;
+	*/
 	color: #fff;
 }
 footer ul {
-	list-style-type: disc;
+	/* list-style-type: disc; */
+	list-style: none;
 	color: #fff;
 	padding: 0;
 	margin: 0;
+	text-align: center;
 }
 
 .footer_item {
 	margin-bottom: 1rem;
 }
 
+.jump_create_thread_wrap {
+	margin-bottom: 1rem;
+}
 #jump_create_thread_form {
 	display: block;
 	width: 100%;
@@ -303,7 +314,7 @@ footer ul {
 nav {
 	background-color: #fff;
 	border-radius: 4px;
-	margin-top: 1rem;
+	/* margin-top: 1rem; */
 	padding: 1rem;
 	width: 100%;
 	box-sizing: border-box;
@@ -508,8 +519,14 @@ nav h3 {
 	padding: 1rem;
 }
 .reply_area textarea {
-	width: 60%;
+	width: 100%;
 	height: 10rem;
+	box-sizing: border-box;
+}
+
+.reply_input_wrap {
+	width: 100%;
+	margin-bottom: 1rem;
 }
 
 .reply_form button {
@@ -714,7 +731,7 @@ nav h3 {
 		margin-top: 1rem;
 	}
 	body {
-		background-color: #82cddd;
+		background-color: #dbedff;
 	}
 	nav {
 		/*
