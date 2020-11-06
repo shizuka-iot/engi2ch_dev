@@ -160,15 +160,15 @@
 			</div>
 
 			<!-- 右側にあるナビゲーションバー -->
-			<div class="column">
-				<div class="side column">
-				<?php if( !isset($_GET['thread']) ):?>
-					<a href="create_thread.php" id="jump_create_thread_form" class="color_wh">
-						<div class="jump_create_thread center">
-								スレッドを作成する<i class="fas fa-pencil-alt"></i>
-						</div>
-					</a>
-				<?php endif;?>
+			<div class="side_wrap column">
+				<div class="side">
+					<?php if( !isset($_GET['thread']) ):?>
+						<a href="create_thread.php" id="jump_create_thread_form" class="color_wh">
+							<div class="jump_create_thread center">
+									スレッドを作成する<i class="fas fa-pencil-alt"></i>
+							</div>
+						</a>
+					<?php endif;?>
 					<nav class="column">
 						<div class="search_form_wrap">
 							<form method="get" action="" class="row">
@@ -179,9 +179,11 @@
 						<h3>カテゴリ</h3>
 						<ul class="select_category_list">
 							<?php foreach($categories as $category):?>
-								<a href="?category=<?=h($category->cat_name)?>"><li class="color_lb">
+								<li>
+								<a class="color_lb" href="?category=<?=h($category->cat_name)?>">
 								<?=h($category->cat_name.' ('.$IndexCtr->getCountCategoryFromId($category->id).')')?>
-								</li></a>
+								</a>
+								</li>
 							<?php endforeach;?>
 						</ul>
 					</nav>
