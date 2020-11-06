@@ -12,8 +12,27 @@ body {
 
 .agreement_wrap {
 	background-color: #fff;
-	margin: 0.5rem;
-	padding: 1rem;
+	margin: 1rem;
+	margin-bottom: 0;
+	padding: 2rem;
+	width: 80%;
+	border-radius: 8px;
+	box-sizing: border-box;
+}
+.agreement_wrap h1 {
+	color: #222;
+	font-size: 1.4rem;
+	margin-top: 1rem;
+}
+.agreement_wrap h2 {
+	color: #222;
+	font-size: 1.2rem;
+	margin-top: 1rem;
+}
+.agreement_wrap p, .agreement_wrap li {
+	font-size: 0.8rem;
+	line-height: 1.8rem;
+	letter-spacing: 3px;
 }
 button {
 	cursor: pointer;
@@ -589,12 +608,17 @@ nav h3 {
 }
 .contact_form_wrap {
 	background-color: #fff;
-	width: 100%;
+	margin: 1rem;
+	margin-bottom: 0;
+	padding: 2rem;
+	width: 80%;
+	border-radius: 8px;
+	box-sizing: border-box;
 }
 
 .contact_form input ,
 .contact_form textarea {
-	width: 80%;
+	width: 100%;
 }
 
 /* ここからPCビュー */
