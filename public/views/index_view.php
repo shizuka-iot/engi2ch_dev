@@ -29,6 +29,15 @@
 
 						<div class="">
 							<div class="thread_contents">
+								<p>
+									1.名前:
+										<span class="color_gr fs_18"><?=h($thread->auther)?>
+										</span>
+									投稿日時: <?=h($thread->created_at)?>
+									<i class="fas fa-reply"></i>返信
+								</p>
+						
+								<p class="thread_body"><?=nl2br(h($thread->body))?></p>
 								<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 0))?>">
 
 								<div class="vote_area">
@@ -39,6 +48,8 @@
 									<span class="good"><?=h($thread->good)?></span>
 									<i class="fas fa-thumbs-down bad_btn" id="bad_thread_<?=$thread->no?>" data-bad_thread_no="<?=$thread->no?>"></i>
 									<span class="bad"><?=h($thread->bad)?></span>
+									<div class="vote_color">
+									</div>
 								</div>
 
 							</div>
@@ -47,7 +58,7 @@
 						<div class="reply_area">
 
 							<div class="replies">
-								<?php $replies = $IndexCtr->getReplies($thread->no); $index=1;?>
+								<?php $replies = $IndexCtr->getReplies($thread->no); $index=2;?>
 								<?php foreach($replies as $reply):?>
 									<div class="each_reply">
 										<p>
