@@ -501,8 +501,11 @@ nav h3 {
 	color: #000;
 }
 
+.vote_color {
+}
+
 .reply_area {
-	margin-top: 4rem;
+	margin-top: 2rem;
 }
 .reply_body {
 	letter-spacing: 0;
