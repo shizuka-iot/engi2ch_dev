@@ -184,6 +184,12 @@ padding-left: 0.5rem;
 .select_category_list li {
 	margin: 0.5rem 0;
 }
+.show_upload_img {
+	width: 200px;
+}
+.show_upload_img img {
+	width: 100%;
+}
 
 h1 { margin: 0;}
 h2 { margin: 0;}
