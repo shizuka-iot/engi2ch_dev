@@ -1,5 +1,5 @@
 $(function() {
-  $('input[type=file]').after('<span></span>');
+  $('input[type=file]').after('<span class="show_upload_img"></span>');
 
   // アップロードするファイルを選択
   $('input[type=file]').change(function() {
@@ -9,7 +9,7 @@ $(function() {
     if (! file.type.match('image.*')) {
       // クリア
       $(this).val('');
-      $('span').html('');
+      $('.show_upload_img').html('');
       return;
     }
 
@@ -17,7 +17,7 @@ $(function() {
     var reader = new FileReader();
     reader.onload = function() {
       var img_src = $('<img>').attr('src', reader.result);
-      $('span').html(img_src);
+      $('.show_upload_img').html(img_src);
     }
     reader.readAsDataURL(file);
   });
