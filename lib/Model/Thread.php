@@ -215,13 +215,14 @@ class Thread extends \Mvc0623\Model
 			$order = 'order by no asc';
 			break;
 		case 'popular':
-			$order = 'order by no asc';
+			$order = 'order by round ( good / (good + bad) * 100 ) desc';
 			break;
 		case 'comment':
-			$order = 'order by no asc';
+			$order = 'order by comments desc';
 			break;
 		default:
 			$order = 'order by no desc';
+			break;
 		}
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		// $sql = sprintf(
@@ -231,6 +232,7 @@ class Thread extends \Mvc0623\Model
 			thread.thumbnail_flag, thread.created_at, thread.updated_at, 
 			category.id, category.cat_name
 			from thread left outer join category on cat_id = category.id 
+			left outer join count_comment on thread.no = thread_no 
 			where thread.delete_flag = 0 ';
 		$sql .= sprintf('
 			%s limit %d offset %d', $order, THREADS_PER_PAGE, $offset);
@@ -241,6 +243,10 @@ class Thread extends \Mvc0623\Model
 			return false;
 		}
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
+		// echo '<pre>';
+		// var_dump( $stmt->fetchAll());
+		// echo '</pre>';
+		// exit;
 		return $stmt->fetchAll();
 	}
 
