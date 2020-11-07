@@ -3,6 +3,140 @@ namespace Mvc0623\Model;
 
 class Thread extends \Mvc0623\Model
 {
+	public function vote()
+	{
+
+		switch($_POST['mode'])
+		{
+			// goodボタンが押された場合の処理
+			case 'good':
+				
+				// トランザクション開始
+				$this->pdo->beginTransaction();
+
+					// クッキーにgoodボタンを押した痕跡があればキャンセル処理
+					if( isset($_COOKIE['good_thread_'.$_POST['thread_no']]) &&
+										$_COOKIE['good_thread_'.$_POST['thread_no']] === '1')
+					{
+						// goodを下げる（キャンセル）
+						$this->_down_good_thread_count($_POST['thread_no']);
+						// クッキーも削除してgoodをなかったことに。
+						setcookie('good_thread_'.$_POST['thread_no'], '', time()-60*60*24);
+					}
+					else
+					{
+						// goodカウントを上げる。
+						$this->_up_good_thread_count($_POST['thread_no']);
+
+						// goodが押されたことをクッキーに記憶させる。
+						setcookie('good_thread_'.$_POST['thread_no'], true, time()+60*60*24);
+					}
+					// 既にbadも押されていたらbadカウントを下げる。
+					if( isset($_COOKIE['bad_thread_'.$_POST['thread_no']]) &&
+										$_COOKIE['bad_thread_'.$_POST['thread_no']] === '1')
+					{
+						// badを下げる（キャンセル）
+						$this->_down_bad_thread_count($_POST['thread_no']);
+
+						// クッキーも削除してbadをなかったことに。
+						setcookie('bad_thread_'.$_POST['thread_no'], '', time()-60*60*24);
+					}
+
+				// トランザクション終了
+				$this->pdo->commit();
+
+
+				// good/bad両方の値を取り出し。
+				$vote['good'] = $this->_get_good_thread_count($_POST['thread_no']);
+				$vote['bad'] = $this->_get_bad_thread_count($_POST['thread_no']);
+				return $vote;
+
+			// badボタンが押された場合の処理
+			case 'bad':
+
+				// トランザクション開始
+				$this->pdo->beginTransaction();
+
+					// クッキーにbadボタンを押した痕跡があればキャンセル処理
+					if( isset($_COOKIE['bad_thread_'.$_POST['thread_no']]) &&
+										$_COOKIE['bad_thread_'.$_POST['thread_no']] === '1')
+					{
+						// badカウントをもとに戻す
+						$this->_down_bad_thread_count($_POST['thread_no']);
+						// クッキーも削除してbadボタンが押された痕跡を消す
+						setcookie('bad_thread_'.$_POST['thread_no'], '', time()-60*60*24);
+					}
+					// クッキーにbadボタンを押された痕跡がないときはbadカウントを増やす
+					else
+					{
+						// badカウントを上げる。
+						$this->_up_bad_thread_count($_POST['thread_no']);
+
+						// badが押されたことをクッキーに記憶させる。
+						setcookie('bad_thread_'.$_POST['thread_no'], true, time()+60*60*24);
+					}
+					// 既にgoodも押されていたらgoodカウントを下げる。
+					if( isset($_COOKIE['good_thread_'.$_POST['thread_no']]) &&
+										$_COOKIE['good_thread_'.$_POST['thread_no']] === '1')
+					{
+						$this->_down_good_thread_count($_POST['thread_no']);
+						// goodボタンが押されたのをなかったことに。
+						setcookie('good_thread_'.$_POST['thread_no'], '', time()-60*60*24);
+					}
+
+				// トランザクション終了
+				$this->pdo->commit();
+
+				// good/bad両方の値を取り出し。
+				$vote['good'] = $this->_get_good_thread_count($_POST['thread_no']);
+				$vote['bad'] = $this->_get_bad_thread_count($_POST['thread_no']);
+				return $vote;
+		}
+	}
+	private function _up_good_thread_count($thread_no)
+	{
+		// 更新
+		$sql = 'update thread set good = good + 1 where no = ?';
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute([$thread_no]);
+
+	}
+	private function _get_good_thread_count($thread_no)
+	{
+		// 更新した値を取り出し
+		$sql = sprintf('select good from thread where no = %s', $thread_no);
+		$stmt = $this->pdo->query($sql);
+		return $stmt->fetchColumn();
+	}
+	private function _up_bad_thread_count($thread_no)
+	{
+		// 更新
+		$sql = 'update thread set bad = bad + 1 where no = ?';
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute([$thread_no]);
+
+	}
+	private function _get_bad_thread_count($thread_no)
+	{
+		// 更新した値を取り出し
+		$sql = sprintf('select bad from thread where no = %s', $thread_no);
+		$stmt = $this->pdo->query($sql);
+		return $stmt->fetchColumn();
+	}
+	private function _down_good_thread_count($thread_no)
+	{
+		// 更新
+		$sql = 'update thread set good = good - 1 where no = ?';
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute([$thread_no]);
+	}
+	private function _down_bad_thread_count($thread_no)
+	{
+		// 更新
+		$sql = 'update thread set bad = bad - 1 where no = ?';
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->execute([$thread_no]);
+	}
 	/****************************************************
 									カテゴリ情報を取得
 	****************************************************/
@@ -151,11 +285,10 @@ class Thread extends \Mvc0623\Model
 
 	/****************************************************
 	* 新規スレッド作成
-	* スレ主の発言は最初のリプライとして登録
 	****************************************************/
 	public function createThread($val, $fileName)
 	{
-		$this->pdo->beginTransaction();
+		// $this->pdo->beginTransaction();
 
 		/* スレッドテーブル */
 		$sql = 'insert into thread
@@ -174,6 +307,7 @@ class Thread extends \Mvc0623\Model
 
 
 		/* リプライテーブル */
+		/*
 		$sql = 'insert into reply
 		 	(thread_no, auther, body, created_at, updated_at) 
 			values
@@ -186,6 +320,7 @@ class Thread extends \Mvc0623\Model
 		]);
 
 		$this->pdo->commit();
+		 */
 
 		if( $res === false )
 		{

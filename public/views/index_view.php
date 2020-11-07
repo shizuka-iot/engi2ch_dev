@@ -24,14 +24,23 @@
 						<?php if (!$thread):?>
 						<p>記事が存在しません</p>
 						<?php else:?>
-						<h3 class="fw_normal"><?=h($thread->title)?><span class="bold">【<?=h($thread->cat_name)?>】</span></h3><span><?=h($thread->created_at)?></span>
+						<h3 class="fw_normal"><?=h($thread->title)?><span class="bold">【<?=h($thread->cat_name)?>】</span></h3>
 						
 
 						<div class="">
 							<div class="thread_contents">
 								<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 0))?>">
-								<p>名前: <span class="color_lb fs_18"><?=h($thread->auther)?></span><p>
-								<p><?=nl2br(h($thread->body))?><p>
+
+								<div class="vote_area">
+									<!-- formタグで囲まないのはここでPOSTする必要がない
+									・ここでPOSTしてはいけないから。JSでPOSTは操作する。
+										ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
+									<i class="fas fa-thumbs-up good_btn" id="good_thread_<?=$thread->no?>" data-good_thread_no="<?=$thread->no?>"></i>
+									<span class="good"><?=h($thread->good)?></span>
+									<i class="fas fa-thumbs-down bad_btn" id="bad_thread_<?=$thread->no?>" data-bad_thread_no="<?=$thread->no?>"></i>
+									<span class="bad"><?=h($thread->bad)?></span>
+								</div>
+
 							</div>
 						</div>
 
@@ -52,8 +61,15 @@
 										<p class="reply_body"><?=nl2br(h($reply->body))?></p>
 
 
-										<!-- formタグで囲まないのはここでPOSTする必要がない・ここでPOSTしてはいけないから。JSでPOSTは操作する。ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
-											<i class="fas fa-thumbs-up good_btn" id="good_<?=$reply->no?>" data-good_id="<?=$reply->no?>"></i><span class="good"><?=h($reply->good)?></span><i class="fas fa-thumbs-down bad_btn" id="bad_<?=$reply->no?>" data-bad_id="<?=$reply->no?>"></i><span class="bad"><?=h($reply->bad)?></span>
+										<div class="vote_area">
+											<!-- formタグで囲まないのはここでPOSTする必要がない
+											・ここでPOSTしてはいけないから。JSでPOSTは操作する。
+												ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
+											<i class="fas fa-thumbs-up good_btn" id="good_<?=$reply->no?>" data-good_id="<?=$reply->no?>"></i>
+											<span class="good"><?=h($reply->good)?></span>
+											<i class="fas fa-thumbs-down bad_btn" id="bad_<?=$reply->no?>" data-bad_id="<?=$reply->no?>"></i>
+											<span class="bad"><?=h($reply->bad)?></span>
+										</div>
 
 									</div>
 									<?php $index++;?>

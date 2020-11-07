@@ -19,27 +19,26 @@ class VoteController extends \Mvc0623\Controller
 			throw new \Exception('mode not set');
 		}
 
-		/*
-		switch($_POST['mode'])
-		{
-			case 'good':
-				return $this->_voteGood();
-			case 'bad':
-				return $this->_voteBad();
-		}
-		 */
 		return $this->_vote();
 	}
 
 	private function _vote()
 	{
-		if( !isset($_POST['id']) )
+		if( !isset($_POST['id']) && !isset($_POST['thread_no']))
 		{
 			throw new \Exception('id no set');
 		}
 
-		$ReplyModel = new \Mvc0623\Model\Reply();
-		return $ReplyModel->vote($_POST);
+		if (isset($_POST['thread_no']))
+		{
+			$threadModel = new \Mvc0623\Model\Thread();
+			return $threadModel->vote($_POST);
+		}
+		else
+		{
+			$ReplyModel = new \Mvc0623\Model\Reply();
+			return $ReplyModel->vote($_POST);
+		}
 	}
 }
 ?>
