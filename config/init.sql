@@ -1,14 +1,3 @@
-drop table if exists user;
-create table if not exists user 
-( id int unsigned not null auto_increment primary key,
-	username varchar(255),
-	email varchar(255) unique,
-	password varchar(255),
-	created_at datetime,
-	updated_at datetime,
-	delete_flag tinyint(1) default 0 );
-
-
 drop table if exists thread;
 create table if not exists thread 
 ( no int unsigned not null auto_increment primary key,
@@ -19,6 +8,8 @@ create table if not exists thread
 	cat_id int not null,
 	fileName varchar(255),
 	thumbnail_flag tinyint(1) default 0,
+	good int unsigned default 0,
+	bad int unsigned default 0,
 	created_at datetime,
 	updated_at datetime,
 	delete_flag tinyint(1) default 0 
@@ -59,8 +50,8 @@ create table if not exists reply
 	auther varchar(255),
 	body text,
 	fileName varchar(255),
-	good int default 0,
-	bad int default 0,
+	good int unsigned default 0,
+	bad int unsigned default 0,
 	created_at datetime,
 	updated_at datetime,
 	delete_flag tinyint(1) default 0
