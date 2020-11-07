@@ -150,10 +150,14 @@ class Thread extends \Mvc0623\Model
 	}
 
 	/****************************************************
-								新規スレッド作成
+	* 新規スレッド作成
+	* スレ主の発言は最初のリプライとして登録
 	****************************************************/
 	public function createThread($val, $fileName)
 	{
+		$this->pdo->beginTransaction();
+
+		/* スレッドテーブル */
 		$sql = 'insert into thread
 			(auther, title, body, cat_id, fileName, created_at, updated_at) values
 		 (:auther, :title, :body, :cat_id, :fileName, now(), now() )';
@@ -165,11 +169,29 @@ class Thread extends \Mvc0623\Model
 			':cat_id'=>$val['cat_id'],
 		 	':fileName'=>$fileName
 		]);
+		// 上で作成したレコードのid(スレッドNo)を取得
+		$lastInsertId = $this->pdo->lastInsertId();
+
+
+		/* リプライテーブル */
+		$sql = 'insert into reply
+		 	(thread_no, auther, body, created_at, updated_at) 
+			values
+		 	(:thread_no, :auther, :body, now(), now() )';
+		$stmt = $this->pdo->prepare($sql);
+		$res = $stmt->execute([
+			':thread_no'=>$lastInsertId,
+			':auther'=>$val['auther'],
+			':body'=>$val['body']
+		]);
+
+		$this->pdo->commit();
+
 		if( $res === false )
 		{
 			throw new \Exception('書き込み失敗');
 		}
-		return $this->pdo->lastInsertId();
+		return $lastInsertId;
 	}
 
 	/****************************************************
