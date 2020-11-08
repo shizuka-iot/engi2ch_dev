@@ -19,7 +19,7 @@
 	<!-- font awesome cssファイルなのでヘッド内で読み込む-->
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="views/styles.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
