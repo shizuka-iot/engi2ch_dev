@@ -44,9 +44,9 @@
 									<!-- formタグで囲まないのはここでPOSTする必要がない
 									・ここでPOSTしてはいけないから。JSでPOSTは操作する。
 										ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
-									<i class="fas fa-thumbs-up good_btn" id="good_thread_<?=$thread->no?>" data-good_thread_no="<?=$thread->no?>"></i>
+									<i class="fas fa-thumbs-up good_btn" id="good_thread_<?=$thread->no?>" data-good_thread="<?=$thread->no?>"></i>
 									<span class="good"><?=h($thread->good)?></span>
-									<i class="fas fa-thumbs-down bad_btn" id="bad_thread_<?=$thread->no?>" data-bad_thread_no="<?=$thread->no?>"></i>
+									<i class="fas fa-thumbs-down bad_btn" id="bad_thread_<?=$thread->no?>" data-bad_thread="<?=$thread->no?>"></i>
 									<span class="bad"><?=h($thread->bad)?></span>
 									<div class="vote_color">
 									</div>
@@ -124,17 +124,6 @@
 						<form method="get" action="" class="sort_form">
 							<div class="sort_wrap">
 								<div class="sort">
-									<label for="sort_period" class="fs_14">並べ替え:</label>
-									<select id="sort_period" name="sort">
-										<option value="new" <?php if(isset($_GET['sort']) && $_GET['sort']==='new')echo 'selected';?>>新着順</option>
-										<option value="old" <?php if(isset($_GET['sort']) && $_GET['sort']==='old')echo 'selected';?>>古い順</option>
-										<option value="popular" <?php if(isset($_GET['sort']) && $_GET['sort']==='popular')echo 'selected';?>>評価の高い順</option>
-										<option value="comment <?php if(isset($_GET['sort']) && $_GET['sort']==='comment')echo 'selected';?>">コメントの多い順</option>
-									</select>
-
-								</div>
-
-								<div class="sort">
 									<label for="sort_category" class="fs_14">カテゴリ:</label>
 									<select id="" name="category">
 										<option value="">全カテゴリ</option>
@@ -143,6 +132,17 @@
 												
 										<?php endforeach;?>
 									</select>
+								</div>
+
+								<div class="sort">
+									<label for="sort_period" class="fs_14">並べ替え:</label>
+									<select id="sort_period" name="sort">
+										<option value="new" <?php if(isset($_GET['sort']) && $_GET['sort']==='new')echo 'selected';?>>新着順</option>
+										<option value="old" <?php if(isset($_GET['sort']) && $_GET['sort']==='old')echo 'selected';?>>古い順</option>
+										<option value="popular" <?php if(isset($_GET['sort']) && $_GET['sort']==='popular')echo 'selected';?>>評価の高い順</option>
+										<option value="comment" <?php if(isset($_GET['sort']) && $_GET['sort']==='comment')echo 'selected';?>>コメントの多い順</option>
+									</select>
+
 								</div>
 
 							</div>
