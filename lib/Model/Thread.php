@@ -256,15 +256,37 @@ class Thread extends \Mvc0623\Model
 	****************************************************/
 	public function getThreadsFromSearch($search, $page, $sort)
 	{
+		switch ($sort)
+		{
+		case 'new':
+			$order = 'order by no desc';
+			break;
+		case 'old':
+			$order = 'order by no asc';
+			break;
+		case 'popular':
+			$order = 'order by round ( good / (good + bad) * 100 ) desc';
+			break;
+		case 'comment':
+			$order = 'order by comments desc';
+			break;
+		default:
+			$order = 'order by no desc';
+			break;
+		}
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		$word = '%'.$search.'%';
 		$sql = 'select
 			no, user_id, auther, title, body, cat_id, fileName, thumbnail_flag, 
 			thread.created_at, thread.updated_at, category.id, cat_name 
-			from thread join category
-			on cat_id = category.id where title like ? and delete_flag = 0 ';
-		$sql.= sprintf(
-				' order by no desc limit %d offset %d', THREADS_PER_PAGE, $offset);
+			from thread left outer join category
+			on cat_id = category.id 
+			left outer join count_comment on thread.no = thread_no 
+			where title like ? and delete_flag = 0 ';
+		// $sql.= sprintf(
+		//		' order by no desc limit %d offset %d', THREADS_PER_PAGE, $offset);
+		$sql .= sprintf('
+			%s limit %d offset %d', $order, THREADS_PER_PAGE, $offset);
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute([$word]);
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
@@ -275,14 +297,36 @@ class Thread extends \Mvc0623\Model
 	****************************************************/
 	public function getThreadsFromCategory($category, $page, $sort)
 	{
+		switch ($sort)
+		{
+		case 'new':
+			$order = 'order by no desc';
+			break;
+		case 'old':
+			$order = 'order by no asc';
+			break;
+		case 'popular':
+			$order = 'order by round ( good / (good + bad) * 100 ) desc';
+			break;
+		case 'comment':
+			$order = 'order by comments desc';
+			break;
+		default:
+			$order = 'order by no desc';
+			break;
+		}
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		$sql = 'select
-			no, user_id, auther, title, body, cat_id, fileName, thumbnail_flag, 
+			no, auther, title, body, cat_id, fileName, thumbnail_flag, 
 			thread.created_at, thread.updated_at, category.id, cat_name 
 			from thread join category
-			on cat_id = category.id where cat_name = ? and delete_flag = 0 ';
-		$sql.= sprintf(
-				' order by no desc limit %d offset %d', THREADS_PER_PAGE, $offset);
+			on cat_id = category.id 
+			left outer join count_comment on thread.no = thread_no 
+			where cat_name = ? and delete_flag = 0 ';
+		// $sql.= sprintf(
+		// 		' order by no desc limit %d offset %d', THREADS_PER_PAGE, $offset);
+		$sql .= sprintf('
+			%s limit %d offset %d', $order, THREADS_PER_PAGE, $offset);
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute([$category]);
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
