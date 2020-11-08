@@ -1,6 +1,6 @@
-<div class="header_search">
+<div class="header_search_word_form_wrapper">
 	<div class="container">
-		<form method="get" action="" class="row">
+		<form method="get" action="" class="row header_search_word_form">
 			<input type="text" name="search" size="1" placeholder="スレタイを検索">
 			<button type="submit"><i class="fas fa-search"></i></button>
 		</form>
