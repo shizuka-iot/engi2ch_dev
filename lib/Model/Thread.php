@@ -206,26 +206,8 @@ class Thread extends \Mvc0623\Model
 	****************************************************/
 	public function getAllThreads($page, $sort)
 	{
-		switch ($sort)
-		{
-		case 'new':
-			$order = 'order by no desc';
-			break;
-		case 'old':
-			$order = 'order by no asc';
-			break;
-		case 'popular':
-			$order = 'order by round ( good / (good + bad) * 100 ) desc';
-			break;
-		case 'comment':
-			$order = 'order by comments desc';
-			break;
-		default:
-			$order = 'order by no desc';
-			break;
-		}
+		$order = $this->_generateSqlOrderByPostedValue($sort);
 		$offset = THREADS_PER_PAGE * ($page - 1);
-		// $sql = sprintf(
 		$sql = 
 			'select
 			thread.no, thread.auther, thread.title, thread.body, cat_id, thread.fileName,
@@ -252,28 +234,33 @@ class Thread extends \Mvc0623\Model
 
 
 	/****************************************************
-								スレッドをタイトル検索
+	 * フォームから送られた値からSQLの並び替え(order by)を
+	 * 生成するメソッド
 	****************************************************/
-	public function getThreadsFromSearch($search, $page, $sort)
+	public function _generateSqlOrderByPostedValue($sort)
 	{
 		switch ($sort)
 		{
 		case 'new':
-			$order = 'order by no desc';
-			break;
+			return 'order by no desc';
 		case 'old':
-			$order = 'order by no asc';
-			break;
+			return 'order by no asc';
 		case 'popular':
-			$order = 'order by round ( good / (good + bad) * 100 ) desc';
-			break;
+			return 'order by round ( good / (good + bad) * 100 ) desc';
 		case 'comment':
-			$order = 'order by comments desc';
-			break;
+			return 'order by comments desc';
 		default:
-			$order = 'order by no desc';
-			break;
+			return 'order by no desc';
 		}
+	}
+
+
+	/****************************************************
+								スレッドをタイトル検索
+	****************************************************/
+	public function getThreadsFromSearch($search, $page, $sort)
+	{
+		$order = $this->_generateSqlOrderByPostedValue($sort);
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		$word = '%'.$search.'%';
 		$sql = 'select
@@ -283,8 +270,6 @@ class Thread extends \Mvc0623\Model
 			on cat_id = category.id 
 			left outer join count_comment on thread.no = thread_no 
 			where title like ? and delete_flag = 0 ';
-		// $sql.= sprintf(
-		//		' order by no desc limit %d offset %d', THREADS_PER_PAGE, $offset);
 		$sql .= sprintf('
 			%s limit %d offset %d', $order, THREADS_PER_PAGE, $offset);
 		$stmt = $this->pdo->prepare($sql);
@@ -297,24 +282,7 @@ class Thread extends \Mvc0623\Model
 	****************************************************/
 	public function getThreadsFromCategory($category, $page, $sort)
 	{
-		switch ($sort)
-		{
-		case 'new':
-			$order = 'order by no desc';
-			break;
-		case 'old':
-			$order = 'order by no asc';
-			break;
-		case 'popular':
-			$order = 'order by round ( good / (good + bad) * 100 ) desc';
-			break;
-		case 'comment':
-			$order = 'order by comments desc';
-			break;
-		default:
-			$order = 'order by no desc';
-			break;
-		}
+		$order = $this->_generateSqlOrderByPostedValue($sort);
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		$sql = 'select
 			no, auther, title, body, cat_id, fileName, thumbnail_flag, 
@@ -323,8 +291,6 @@ class Thread extends \Mvc0623\Model
 			on cat_id = category.id 
 			left outer join count_comment on thread.no = thread_no 
 			where cat_name = ? and delete_flag = 0 ';
-		// $sql.= sprintf(
-		// 		' order by no desc limit %d offset %d', THREADS_PER_PAGE, $offset);
 		$sql .= sprintf('
 			%s limit %d offset %d', $order, THREADS_PER_PAGE, $offset);
 		$stmt = $this->pdo->prepare($sql);
@@ -338,9 +304,6 @@ class Thread extends \Mvc0623\Model
 	****************************************************/
 	public function createThread($val, $fileName)
 	{
-		// $this->pdo->beginTransaction();
-
-		/* スレッドテーブル */
 		$sql = 'insert into thread
 			(auther, title, body, cat_id, fileName, created_at, updated_at) values
 		 (:auther, :title, :body, :cat_id, :fileName, now(), now() )';
@@ -354,23 +317,6 @@ class Thread extends \Mvc0623\Model
 		]);
 		// 上で作成したレコードのid(スレッドNo)を取得
 		$lastInsertId = $this->pdo->lastInsertId();
-
-
-		/* リプライテーブル */
-		/*
-		$sql = 'insert into reply
-		 	(thread_no, auther, body, created_at, updated_at) 
-			values
-		 	(:thread_no, :auther, :body, now(), now() )';
-		$stmt = $this->pdo->prepare($sql);
-		$res = $stmt->execute([
-			':thread_no'=>$lastInsertId,
-			':auther'=>$val['auther'],
-			':body'=>$val['body']
-		]);
-
-		$this->pdo->commit();
-		 */
 
 		if( $res === false )
 		{
