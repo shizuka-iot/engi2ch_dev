@@ -29,6 +29,25 @@ class Thread extends \Mvc0623\Controller
 	}
 
 
+
+	/*******************************************					
+	 * 何件取得するか引数に指定して話題のスレッドを取得
+	*******************************************/					
+	public function getHotTopics($quantity)
+	{
+		$threadModel = new \Mvc0623\Model\Thread();
+		return $threadModel->selectHotTopics($quantity);
+	}
+	/*******************************************					
+	 * 何件取得するか引数に指定して人気のスレッドを取得
+	*******************************************/					
+	public function getPopularThreads($quantity)
+	{
+		$threadModel = new \Mvc0623\Model\Thread();
+		return $threadModel->selectPopularThreads($quantity);
+	}
+
+
 	/*********************************************
 		各スレッドごとのコメント数を取得
 	*********************************************/

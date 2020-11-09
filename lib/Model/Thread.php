@@ -173,10 +173,8 @@ class Thread extends \Mvc0623\Model
 		$stmt->execute([$thread_no]);
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
 		$result = $stmt->fetch();
-		// var_dump($result);
 		if (!$result)
 		{
-			// echo '記事が存在しません';
 			return false;
 		}
 		return $result;
@@ -225,10 +223,6 @@ class Thread extends \Mvc0623\Model
 			return false;
 		}
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
-		// echo '<pre>';
-		// var_dump( $stmt->fetchAll());
-		// echo '</pre>';
-		// exit;
 		return $stmt->fetchAll();
 	}
 
@@ -246,7 +240,7 @@ class Thread extends \Mvc0623\Model
 		case 'old':
 			return 'order by no asc';
 		case 'popular':
-			return 'order by round ( good / (good + bad) * 100 ) desc';
+			return 'order by round ( good / (good + bad) * 100 ) desc, good desc';
 		case 'comment':
 			return 'order by comments desc';
 		default:
@@ -254,6 +248,76 @@ class Thread extends \Mvc0623\Model
 		}
 	}
 
+	public function selectHotTopics($quantity)
+	{
+		$sql = '
+			select
+				no, 
+				user_id, 
+				auther, 
+				title, 
+				body, 
+				cat_id, 
+				fileName, 
+				thumbnail_flag, 
+				thread.created_at, 
+				thread.updated_at, 
+				category.id, 
+				cat_name 
+			from thread 
+				left outer join category
+					on cat_id = category.id 
+				left outer join count_comment 
+					on thread.no = thread_no 
+			where thread.delete_flag = 0 
+			order by (good + bad) desc,
+			comments desc
+			';
+		$sql .= sprintf(' limit %d ', $quantity);
+		$stmt = $this->pdo->query($sql);
+
+		if (!$stmt)
+		{
+			return false;
+		}
+		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
+		return $stmt->fetchAll();
+	}
+	public function selectPopularThreads($quantity)
+	{
+		$sql = '
+			select
+				no, 
+				user_id, 
+				auther, 
+				title, 
+				body, 
+				cat_id, 
+				fileName, 
+				thumbnail_flag, 
+				thread.created_at, 
+				thread.updated_at, 
+				category.id, 
+				cat_name 
+			from thread 
+				left outer join category
+					on cat_id = category.id 
+				left outer join count_comment 
+					on thread.no = thread_no 
+			where thread.delete_flag = 0 
+			order by round ( good / (good + bad) * 100 ) desc,
+			good desc
+			';
+		$sql .= sprintf(' limit %d ', $quantity);
+		$stmt = $this->pdo->query($sql);
+
+		if (!$stmt)
+		{
+			return false;
+		}
+		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
+		return $stmt->fetchAll();
+	}
 
 	/****************************************************
 								スレッドをタイトル検索
@@ -277,6 +341,8 @@ class Thread extends \Mvc0623\Model
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
 		return $stmt->fetchAll();
 	}
+
+
 	/****************************************************
 								スレッドをカテゴリ別で取得
 	****************************************************/
@@ -298,6 +364,7 @@ class Thread extends \Mvc0623\Model
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
 		return $stmt->fetchAll();
 	}
+
 
 	/****************************************************
 	* 新規スレッド作成
@@ -325,6 +392,7 @@ class Thread extends \Mvc0623\Model
 		return $lastInsertId;
 	}
 
+
 	/****************************************************
 								サムネ作成時にステートを更新
 	****************************************************/
@@ -339,6 +407,7 @@ class Thread extends \Mvc0623\Model
 			exit;
 		}
 	}
+
 
 	/****************************************************
 								スレッドの件数を取得
@@ -367,6 +436,12 @@ class Thread extends \Mvc0623\Model
 		return $stmt->fetchColumn();
 	}
 
+
+	/****************************************************
+	 * カテゴリIDからカテゴリ別の記事数を取得
+	 * ナビゲーションのカテゴリ一覧の各カテゴリの()に
+	 * 表示するカテゴリ数
+	****************************************************/
 	public function countCategoryFromId($category_id)
 	{
 		$sql = 'select count(no) from thread join category on cat_id = id';
