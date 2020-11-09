@@ -255,6 +255,10 @@ a { text-decoration: none;}
 	font-size: 13px;
 }
 
+.not_found {
+	margin: 2rem 0;
+}
+
 header, footer {
 	background-color: #001e33;
 	padding: 0.5rem 0;
@@ -393,6 +397,7 @@ nav h3 {
 	width: 70px;
 }
 .thread_left img {
+	border-radius: 4px;
 	height: 70px;
 	vertical-align: bottom;
 	width: 100%;
@@ -438,6 +443,17 @@ nav h3 {
 }
 .thread_contents p {
 	padding-left: 0.2rem;
+}
+
+.hot_topics_area {
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+.hot_topics_area h2{
+	border-bottom: 1px dotted #444;
+	margin-bottom: 1rem;
 }
 
 .page p {
@@ -731,10 +747,9 @@ nav h3 {
 		max-width: 18rem;
 	}
 	.sticky {
-		/*
 		position: -webkit-sticky;
 		position: sticky;
 		bottom: 0;
-		*/
+		align-self: flex-end;
 	}
 }/* ここまでPCビュー */
