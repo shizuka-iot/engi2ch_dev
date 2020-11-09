@@ -192,8 +192,9 @@
 			</div>
 
 			<!-- 右側にあるナビゲーションバー -->
-			<div class="side_wrap column">
+			<div class="side_wrap column sticky">
 				<div class="side">
+
 					<?php if( !isset($_GET['thread']) ):?>
 						<div class="jump_create_thread_wrap">
 							<a href="create_thread.php" id="jump_create_thread_form" class="color_wh">
@@ -203,6 +204,38 @@
 							</a>
 						</div>
 					<?php endif;?>
+
+					<div class="hot_topics_area">
+						<h2 class="color_lb fw_400 fs_18">話題のスレッド</h2>
+						<?php foreach ($hotTopics as $hotTopic):?>
+
+							<a class="each_page_link" href="<?=h(SITE_URL."?thread=".$hotTopic->no)?>">
+								<div class="each_thread row">
+
+									<div class="thread_left">
+										<img src="<?=h($IndexCtr->getImgUrl($hotTopic->fileName, $hotTopic->thumbnail_flag))?>">
+									</div>
+
+									<div class="thread_right">
+										<div class="thread_contents column between">
+											<h3 class="fw_bold fs_14 color_co"><?=h($hotTopic->title)?></h3>
+											<p class="fs_12 color_lb2">
+												<span class="fs_13 color_lb2">
+													<i class="fas fa-comments"></i>
+													<?=h($IndexCtr->getCommentsFromThreadNo($hotTopic->no))?>コメント
+												</span>
+												<span class="bold">【<?=h($hotTopic->cat_name)?>】</span>
+											</p>
+										</div>
+
+									</div>
+
+								</div>
+							</a>
+							
+						<?php endforeach;?>
+					</div>
+
 					<nav class="column">
 						<div class="search_form_wrap">
 							<form method="get" action="" class="row">

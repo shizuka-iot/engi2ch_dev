@@ -15,6 +15,7 @@ $categories = $IndexCtr->getCategoryInfo();
 // スレッド情報を取り出し。
 // インデックスコントローラーのメソッドを呼び出してるが定義されているのは親クラス。
 $threads = $IndexCtr->getThreads();
+$hotTopics = $IndexCtr->getHotTopics(5);
 
 include 'views/layout/head.php';
 include 'views/layout/header.php';
