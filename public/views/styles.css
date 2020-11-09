@@ -159,6 +159,12 @@ button {
 	padding-left: 0.5rem;
 	padding-right: 0.2rem;
 }
+.good_btn:hover {
+	color: #00f;
+}
+.bad_btn:hover {
+	color: #f00;
+}
 
 .require {
 	background-color: red;
@@ -268,7 +274,6 @@ header, footer {
 	opacity: 0.8;
 }
 footer {
-	margin-top: 1rem;
 	padding: 1.5rem 0;
 }
 footer li {
@@ -358,7 +363,7 @@ nav h3 {
 
 .create_thread_area {
 	background-color: #fff;
-	margin-top: 1rem;
+	margin: 1rem 0;
 	padding: 1rem;
 	order: 2;
 	/*
@@ -375,15 +380,20 @@ nav h3 {
 }
 
 .each_thread:hover {
+	background-color: #f9f4ff;
 	cursor: pointer;
+	/*
 	opacity: 0.6;
+	*/
 }
 
 .thread_area {
 	background-color: #fff;
 	border-radius: 4px;
 	margin: 0.5rem;
+	/*
 	margin-bottom: 0;
+	*/
 	padding: 1rem;
 	flex: 1;
 	flex-basis: 100%;
@@ -426,10 +436,18 @@ nav h3 {
 	opacity: 0.8;
 }
 
+.each_page_link {
+	margin: 1rem 0;
+	box-sizing: border-box;
+}
+
 .each_thread {
 	border-bottom: 1px solid #ddd;
+	padding: 0.8rem 0;
+	/*
 	margin-bottom: 0.8rem;
 	padding-bottom: 0.8rem;
+	*/
 }
 .thread h3 {
 	letter-spacing: 0.1rem;
@@ -567,15 +585,7 @@ nav h3 {
 }
 
 .side_wrap {
-	/*
-	margin-left: 1rem;
-	margin-top: 1rem;
-	width: 18rem;
-	*/
-	/* flex-shrink: 1; */
-	/* width: 100%; */
 	margin: 1rem;
-	margin-bottom: 0;
 }
 
 .side {
@@ -637,7 +647,6 @@ nav h3 {
 	border-radius: 8px;
 	box-sizing: border-box;
 	margin: 1rem;
-	margin-bottom: 0;
 	padding: 1rem;
 	width: calc(100% - 2rem);
 }
@@ -728,8 +737,7 @@ nav h3 {
 		padding-bottom: 1rem;
 	}
 	.thread_area {
-		margin: 0;
-		margin-top: 1rem;
+		margin: 1rem 0;
 	}
 	body {
 		background-color: #dbedff;
@@ -745,6 +753,7 @@ nav h3 {
 	.side {
 		width: 18rem;
 		max-width: 18rem;
+		margin-bottom: 1rem;
 	}
 	.sticky {
 		position: -webkit-sticky;

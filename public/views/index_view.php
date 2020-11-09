@@ -44,10 +44,10 @@
 									<!-- formタグで囲まないのはここでPOSTする必要がない
 									・ここでPOSTしてはいけないから。JSでPOSTは操作する。
 										ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
-									<i class="fas fa-thumbs-up good_btn" id="good_thread_<?=$thread->no?>" data-good_thread="<?=$thread->no?>"></i>
-									<span class="good"><?=h($thread->good)?></span>
-									<i class="fas fa-thumbs-down bad_btn" id="bad_thread_<?=$thread->no?>" data-bad_thread="<?=$thread->no?>"></i>
-									<span class="bad"><?=h($thread->bad)?></span>
+									<i class="fas fa-thumbs-up good_btn fs_24" id="good_thread_<?=$thread->no?>" data-good_thread="<?=$thread->no?>"></i>
+									<span class="good fs_20"><?=h($thread->good)?></span>
+									<i class="fas fa-thumbs-down bad_btn fs_24" id="bad_thread_<?=$thread->no?>" data-bad_thread="<?=$thread->no?>"></i>
+									<span class="bad fs_20"><?=h($thread->bad)?></span>
 									<div class="vote_color">
 									</div>
 								</div>
@@ -220,11 +220,12 @@
 										<div class="thread_contents column between">
 											<h3 class="fw_bold fs_14 color_co"><?=h($hotTopic->title)?></h3>
 											<p class="fs_12 color_lb2">
-												<span class="fs_13 color_lb2">
+												<span class="fs_12 color_lb2">
 													<i class="fas fa-comments"></i>
 													<?=h($IndexCtr->getCommentsFromThreadNo($hotTopic->no))?>コメント
 												</span>
-												<span class="bold">【<?=h($hotTopic->cat_name)?>】</span>
+												<br>
+												<span class="bold fs_12">【<?=h($hotTopic->cat_name)?>】</span>
 											</p>
 										</div>
 
