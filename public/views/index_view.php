@@ -45,9 +45,9 @@
 										投稿日時: <?=h($thread->created_at)?>
 										<i class="fas fa-reply"></i>返信
 									</p>
-							
-									<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 1))?>">
 									<p class="thread_body"><?=nl2br(h($thread->body))?></p>
+							
+									<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 0))?>">
 								</div>
 
 								<div class="thread_vote">
