@@ -1,3 +1,4 @@
+<script src="js/circle.js"></script>
 <div class="header_search_word_form_wrapper">
 	<div class="container">
 		<form method="get" action="" class="row header_search_word_form">
@@ -19,6 +20,13 @@
 				<!-- 個別スレッドページ -->
 				<?php if( isset($_GET['thread']) ):?>
 					<?php $thread = $IndexCtr->getThreadFromNo();?>
+					<?php
+					$arr = [
+						["#b5b5b5", "bad", (int)h($thread->bad)],
+						["#25b7c0", "good", (int)h($thread->good)],
+					];
+					$sectorInfo = json_encode($arr);
+					?>
 					<div class="thread">
 
 						<?php if (!$thread):?>
@@ -28,29 +36,39 @@
 						
 
 						<div class="">
-							<div class="thread_contents">
-								<p>
-									1.名前:
-										<span class="color_gr fs_18"><?=h($thread->auther)?>
-										</span>
-									投稿日時: <?=h($thread->created_at)?>
-									<i class="fas fa-reply"></i>返信
-								</p>
-						
-								<p class="thread_body"><?=nl2br(h($thread->body))?></p>
-								<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 0))?>">
-
-								<div class="vote_area">
-									<!-- formタグで囲まないのはここでPOSTする必要がない
-									・ここでPOSTしてはいけないから。JSでPOSTは操作する。
-										ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
-									<i class="fas fa-thumbs-up good_btn fs_24" id="good_thread_<?=$thread->no?>" data-good_thread="<?=$thread->no?>"></i>
-									<span class="good fs_20"><?=h($thread->good)?></span>
-									<i class="fas fa-thumbs-down bad_btn fs_24" id="bad_thread_<?=$thread->no?>" data-bad_thread="<?=$thread->no?>"></i>
-									<span class="bad fs_20"><?=h($thread->bad)?></span>
-									<div class="vote_color">
-									</div>
+							<div class="thread_contents column">
+								<div>
+									<p>
+										1.名前:
+											<span class="color_gr fs_18"><?=h($thread->auther)?>
+											</span>
+										投稿日時: <?=h($thread->created_at)?>
+										<i class="fas fa-reply"></i>返信
+									</p>
+							
+									<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 1))?>">
+									<p class="thread_body"><?=nl2br(h($thread->body))?></p>
 								</div>
+
+								<div class="thread_vote">
+									<div class="thread_vote_area row between">
+										<!-- formタグで囲まないのはここでPOSTする必要がない
+										・ここでPOSTしてはいけないから。JSでPOSTは操作する。
+											ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
+										<div class="good_btn_wrapeer">
+											<i class="fas fa-thumbs-up good_btn fs_24" id="good_thread_<?=$thread->no?>" data-good_thread="<?=$thread->no?>"></i>
+											<span class="good fs_20"><?=h($thread->good)?></span>
+										</div>
+
+										<div class="bad_btn_wrapper">
+											<i class="fas fa-thumbs-down bad_btn fs_24" id="bad_thread_<?=$thread->no?>" data-bad_thread="<?=$thread->no?>"></i>
+											<span class="bad fs_20"><?=h($thread->bad)?></span>
+										</div>
+
+									</div>
+									<canvas id="can" width="200" height="180"></canvas>
+								</div>
+
 
 							</div>
 						</div>
@@ -60,7 +78,7 @@
 							<div class="replies">
 								<?php $replies = $IndexCtr->getReplies($thread->no); $index=2;?>
 								<?php foreach($replies as $reply):?>
-									<div class="each_reply">
+									<div class="each_reply column">
 										<p>
 											<?=h($index)?>.名前:
 												<span class="color_gr fs_18"><?=h($reply->auther)?>
@@ -263,3 +281,10 @@
 
 	</div>
 </div>
+
+<?php if(isset($sectorInfo)):?>
+<script>
+	const sectorInfo = <?=$sectorInfo?>;
+</script>
+<script src="js/canvas_update.js"></script>
+<?php endif;?>
