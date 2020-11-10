@@ -167,7 +167,11 @@ class Thread extends \Mvc0623\Model
 	****************************************************/
 	public function findThreadFromNo($thread_no)
 	{
-		$sql = 'select * from thread join category on cat_id = category.id 
+		$sql = 'select 
+			thread.no, thread.auther, thread.title, thread.body, cat_id, thread.fileName,
+			thread.thumbnail_flag, thread.created_at, thread.updated_at, 
+			category.id, category.cat_name, thread.good, thread.bad, thread.thumbnail_flag
+		 	from thread join category on cat_id = category.id 
 			where no = ? and delete_flag = 0';
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->execute([$thread_no]);
