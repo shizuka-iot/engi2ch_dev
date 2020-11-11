@@ -478,6 +478,7 @@ nav h3 {
 	letter-spacing: 0.1rem;
 }
 .thread img {
+	border-radius: 6px;
 	max-width: 100%;
 	height: auto;
 }

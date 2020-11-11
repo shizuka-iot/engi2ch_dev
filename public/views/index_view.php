@@ -39,7 +39,7 @@
 						<div class="">
 							<div class="thread_contents column">
 
-								<div>
+								<div class="center">
 									<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 0))?>">
 								</div>
 
