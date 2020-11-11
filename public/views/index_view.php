@@ -1,4 +1,5 @@
-<script src="js/circle.js"></script>
+<script src="js/circle.js">
+</script>
 <div class="header_search_word_form_wrapper">
 	<div class="container">
 		<form method="get" action="" class="row header_search_word_form">

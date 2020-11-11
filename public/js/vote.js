@@ -59,6 +59,10 @@ $(function(){
 				console.log(data.bad);
 				$('#good_thread_'+ thread_no).next('.good').text(data.good);// これは成功した。
 				$('#bad_thread_'+ thread_no).next('.bad').text(data.bad);// これは成功した。
+				circle.sectorInfo = [
+						["#b5b5b5", "bad", data.bad],
+						["#25b7c0", "good", data.good],
+				];
 
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			console.log(XMLHttpRequest.status);
@@ -130,6 +134,10 @@ $(function(){
 				// $('#bad_'+ id).toggleClass('color_bl');// これは成功した。
 				// $(this).next('.good').text('test');
 			// });
+				circle.sectorInfo = [
+						["#b5b5b5", "bad", data.bad],
+						["#25b7c0", "good", data.good],
+				];
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			console.log(XMLHttpRequest.status);
 			console.log(textStatus);

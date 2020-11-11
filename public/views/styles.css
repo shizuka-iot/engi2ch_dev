@@ -143,7 +143,9 @@ button {
 }
 
 .bad_btn {
+	/*
 	background-color: #fff;
+	*/
 	border: none;
 	border-style: none;
 	cursor: pointer;
@@ -152,7 +154,9 @@ button {
 	padding-right: 0.2rem;
 }
 .good_btn {
+	/*
 	background-color: #fff;
+	*/
 	border: none;
 	border-style: none;
 	cursor: pointer;
@@ -586,7 +590,10 @@ nav h3 {
 }
 .thread_vote {
 	align-self: center;
+	background-color: #eeeeff;
+	border-radius: 8px;
 	margin-top: 2rem;
+	padding: 0.5rem;
 }
 .thread_vote_area {
 	width: 200px;
@@ -595,9 +602,12 @@ nav h3 {
 	*/
 }
 
-.bad_btn_wrapper {
+.bad_btn_wrapper i {
+	background-color: #eeeeff;
+
 }
-.good_btn_wrapper {
+.good_btn_wrapper i {
+	background-color: #eeeeff;
 }
 .each_reply .good, .each_reply .bad{
 	user-select:none;

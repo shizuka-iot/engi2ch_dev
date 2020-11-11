@@ -107,7 +107,7 @@ class Circle
 		this.increase = [];// マウスオーバーで増える扇の半径の増加量。
 		this.hitted = [];// マウスオーバーか否か。
 
-		this.init_array();// 受け取った配列を初期化。
+		this.init_array();// 受け取った配列を0で初期化。
 
 		// これなんのプロパティだったか忘れた。
 		// どうやらパーセンテージを表示するsetHalfDegreesで使うようだ。
@@ -136,6 +136,17 @@ class Circle
 		// this.drawRaderChart();
 
 	}// コンストラクタ
+
+	restart()
+	{
+		/* 追加 */
+		// this.init_array();// 受け取った配列を初期化。
+		this.checkSectorValueForEdge()
+		this.setQuantities();// this.sumに量の合計を格納している。
+		this.setEachAngles();// 各扇が持つ角度を配列にセット。
+		this.setStartFinishAngles();// this.startAngles・this.finishAnglesに開始角・終了角を格納。
+		this.setHalfDegrees();
+	}
 
 
 
@@ -174,6 +185,8 @@ class Circle
 
 		/* 増加量の更新 */
 		this.increaseRadius();
+
+
 	}
 	/* 描画メソッド。この中に色んな描画処理をまとめて入れる。 */
 	draw()
@@ -341,12 +354,8 @@ class Circle
 	// 各扇の角度を計算して配列に格納。
 	setEachAngles()
 	{
-		let ex = 0;
+		// let ex = 0;
 		this.sectorInfo.forEach( (sect, index) => {
-			// // console.log('テスト: '+Math.round( sect[2]/this.sum * 1000));
-			// // console.log('テスト2: '+Math.round( sect[2]/this.sum * 1000)/10);
-			// // console.log('テスト3: '+Math.round( sect[2]/this.sum * 1000*3.6)/10);
-			// // console.log('テスト4: '+Math.round( sect[2]/this.sum * 1000)/10*3.6);
 			this.angles.push( Math.round( sect[2]/this.sum * 1000 * 3.6)/10);
 		});
 
@@ -355,8 +364,6 @@ class Circle
 		this.angles.forEach( (sect, index) => {
 			sum += sect;
 		});
-		// console.log('角度の合計: '+sum);
-		// console.log(`各角度 :${this.angles}`);
 	}
 
 
@@ -736,8 +743,8 @@ class Circle
 		{
 			if (this.sectorInfo[i][2])
 			{
-				console.log(this.sectorInfo[i][2]);
-				console.log("edge_count"+edge_count);
+				// console.log(this.sectorInfo[i][2]);
+				// console.log("edge_count"+edge_count);
 				edge_count++;
 			}
 		}
