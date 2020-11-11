@@ -67,7 +67,7 @@
 										</div>
 
 									</div>
-									<canvas id="can" width="200" height="180"></canvas>
+									<canvas id="can" width="200" height="200"></canvas>
 								</div>
 
 

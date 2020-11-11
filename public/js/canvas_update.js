@@ -1,7 +1,7 @@
 let circle = null;
 if (typeof sectorInfo !== 'undefined')
 {
-	circle = new Circle('can', sectorInfo, 80 ,100, 90, 0, 100);
+	circle = new Circle('can', sectorInfo, 80 ,100, 100, 0, 100);
 
 	function mainLoop()
 	{
