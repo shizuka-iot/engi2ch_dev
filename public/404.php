@@ -6,8 +6,8 @@ include 'views/layout/header.php';
 
 echo <<<EOL
 <div class="center main">
-	<div class="container column">
-		<h1 class="fw_normal">
+	<div class="container column center">
+		<h1 class="fw_normal not_found">
 			404 NOT FOUND
 			<br>
 			お探しのページは存在しません

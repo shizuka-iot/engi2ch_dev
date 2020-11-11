@@ -26,6 +26,10 @@ class VoteController extends \Mvc0623\Controller
 	{
 		if( !isset($_POST['id']) && !isset($_POST['thread_no']))
 		{
+			echo $_POST['id'];
+			echo '<br>';
+			echo $_POST['thread_no'];
+			exit;
 			throw new \Exception('id no set');
 		}
 
