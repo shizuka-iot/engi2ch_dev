@@ -24,11 +24,8 @@ $(function(){
 				}
 			).done(function(data){
 
-				console.log('リプライ通信成功');
-				console.log(data.good);
-				console.log(data.bad);
-				$('#good_'+ id).next('.good').text(data.good);// これは成功した。
-				$('#bad_'+ id).next('.bad').text(data.bad);// これは成功した。
+				$('#good_'+ id).next('.good').text(data.good);
+				$('#bad_'+ id).next('.bad').text(data.bad);
 
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			console.log(XMLHttpRequest.status);
@@ -54,11 +51,10 @@ $(function(){
 				}
 			).done(function(data){
 
-				console.log('スレッド通信成功');
-				console.log(data.good);
-				console.log(data.bad);
-				$('#good_thread_'+ thread_no).next('.good').text(data.good);// これは成功した。
-				$('#bad_thread_'+ thread_no).next('.bad').text(data.bad);// これは成功した。
+				$('#good_thread_'+ thread_no).next('.good').text(data.good);
+				$('#bad_thread_'+ thread_no).next('.bad').text(data.bad);
+				$('#number_of_vote').text(Number(data.good)+Number(data.bad));
+
 				circle.sectorInfo = [
 						["#b5b5b5", "bad", Number(data.bad)],
 						["#25b7c0", "good", Number(data.good)],
@@ -97,12 +93,9 @@ $(function(){
 				console.log('通信成功');
 				console.log(data.bad);
 				/* カウントを更新 */
-				$('#good_'+ id).next('.good').text(data.good);// これは成功した。
-				$('#bad_'+ id).next('.bad').text(data.bad);// これは成功した。
+				$('#good_'+ id).next('.good').text(data.good);
+				$('#bad_'+ id).next('.bad').text(data.bad);
 
-				/* ボタンの色を更新 */
-				// $('#good_'+ id).toggleClass('color_gr');// これは成功した。
-				// $('#bad_'+ id).toggleClass('color_bl');// これは成功した。
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			console.log(XMLHttpRequest.status);
 			console.log(textStatus);
@@ -126,19 +119,16 @@ $(function(){
 					}
 				}
 			).done(function(data){
-				console.log('スレッド通信成功');
-				console.log(data.good);
-				console.log(data.bad);
-				$('#good_thread_'+ thread_no).next('.good').text(data.good);// これは成功した。
-				// $('#good_'+ id).toggleClass('color_gr');// これは成功した。
-				$('#bad_thread_'+ thread_no).next('.bad').text(data.bad);// これは成功した。
-				// $('#bad_'+ id).toggleClass('color_bl');// これは成功した。
-				// $(this).next('.good').text('test');
-			// });
+				$('#good_thread_'+ thread_no).next('.good').text(data.good);
+				$('#bad_thread_'+ thread_no).next('.bad').text(data.bad);
+				$('#number_of_vote').text(Number(data.good)+Number(data.bad));
+
+				/* 円グラフの値を再送信 */
 				circle.sectorInfo = [
 						["#b5b5b5", "bad", Number(data.bad)],
 						["#25b7c0", "good", Number(data.good)],
 				];
+				/* 円グラフのクラスを再計算 */
 				circle.restart();
 			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
 			console.log(XMLHttpRequest.status);

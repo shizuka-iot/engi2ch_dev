@@ -33,41 +33,46 @@
 						<?php if (!$thread):?>
 						<p>記事が存在しません</p>
 						<?php else:?>
-						<h3 class="fw_normal"><?=h($thread->title)?><span class="bold">【<?=h($thread->cat_name)?>】</span></h3>
+						<h2 class="fw_normal"><span class="bold">【<?=h($thread->cat_name)?>】</span><?=h($thread->title)?></h2>
 						
 
 						<div class="">
 							<div class="thread_contents column">
+
 								<div>
-									<p>
-										1.名前:
-											<span class="color_gr fs_18"><?=h($thread->auther)?>
-											</span>
-										投稿日時: <?=h($thread->created_at)?>
-										<i class="fas fa-reply"></i>返信
-									</p>
-									<p class="thread_body"><?=nl2br(h($thread->body))?></p>
-							
 									<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 0))?>">
 								</div>
 
-								<div class="thread_vote">
-									<div class="thread_vote_area row between">
-										<!-- formタグで囲まないのはここでPOSTする必要がない
-										・ここでPOSTしてはいけないから。JSでPOSTは操作する。
-											ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
-										<div class="good_btn_wrapeer">
-											<i class="fas fa-thumbs-up good_btn fs_24" id="good_thread_<?=$thread->no?>" data-good_thread="<?=$thread->no?>"></i>
-											<span class="good fs_20"><?=h($thread->good)?></span>
-										</div>
-
-										<div class="bad_btn_wrapper">
-											<i class="fas fa-thumbs-down bad_btn fs_24" id="bad_thread_<?=$thread->no?>" data-bad_thread="<?=$thread->no?>"></i>
-											<span class="bad fs_20"><?=h($thread->bad)?></span>
-										</div>
-
+								<div class="text_and_vote">
+									<div class="text_contents_area">
+										<p>
+											1.名前:
+												<span class="color_gr fs_18"><?=h($thread->auther)?>
+												</span>
+											投稿日時: <?=h($thread->created_at)?>
+											<!-- <i class="fas fa-reply"></i>返信 -->
+										</p>
+										<p class="thread_body"><?=nl2br(h($thread->body))?></p>
 									</div>
-									<canvas id="can" width="200" height="200"></canvas>
+									<div class="thread_vote">
+										<div class="thread_vote_area row between">
+											<!-- formタグで囲まないのはここでPOSTする必要がない
+											・ここでPOSTしてはいけないから。JSでPOSTは操作する。
+												ここでPOSTするとページ遷移してしまい非同期ではなくなる。 -->
+											<div class="good_btn_wrapeer">
+												<i class="fas fa-thumbs-up good_btn fs_24" id="good_thread_<?=$thread->no?>" data-good_thread="<?=$thread->no?>"></i>
+												<span class="good fs_20"><?=h($thread->good)?></span>
+											</div>
+
+											<div class="bad_btn_wrapper">
+												<i class="fas fa-thumbs-down bad_btn fs_24" id="bad_thread_<?=$thread->no?>" data-bad_thread="<?=$thread->no?>"></i>
+												<span class="bad fs_20"><?=h($thread->bad)?></span>
+											</div>
+
+										</div>
+										<canvas id="can" width="200" height="180"></canvas>
+										<p class="fs_14">■ <span id="number_of_vote"><?=h((int)$thread->good+(int)$thread->bad)?></span>人が評価しました</p>
+									</div>
 								</div>
 
 
@@ -85,7 +90,7 @@
 												<span class="color_gr fs_18"><?=h($reply->auther)?>
 												</span>
 											投稿日時: <?=h($reply->created_at)?>
-											<i class="fas fa-reply"></i>返信
+											<!-- <i class="fas fa-reply"></i>返信 -->
 										</p>
 								
 										<p class="reply_body"><?=nl2br(h($reply->body))?></p>

@@ -10,6 +10,13 @@ body {
 	padding: 1rem;
 }
 
+.text_contents_area {
+	background-color: #efefff;
+	border-radius: 6px;
+	margin-top: 1rem;
+	margin-right: 0;
+	flex: 1;
+}
 
 .agreement_wrap {
 	background-color: #fff;
@@ -408,6 +415,13 @@ nav h3 {
 	width: 100%;
 }
 
+.thread h2 {
+	background-color: #fff3b8;
+	border-radius: 6px;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+}
+
 .thread_left {
 	width: 70px;
 }
@@ -439,6 +453,12 @@ nav h3 {
 }
 .thread_right button:hover {
 	opacity: 0.8;
+}
+
+.text_and_vote {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .each_page_link {
@@ -799,5 +819,11 @@ nav h3 {
 	.thread_vote {
 		align-self: flex-start;
 		margin-top: 1rem;
+	}
+	.text_and_vote {
+		flex-direction: row;
+	}
+	.text_contents_area {
+		margin-right: 1rem;
 	}
 }/* ここまでPCビュー */
