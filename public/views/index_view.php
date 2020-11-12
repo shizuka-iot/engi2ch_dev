@@ -158,7 +158,7 @@
 								</div>
 
 								<div class="sort">
-									<label for="sort_period" class="fs_14">順序:</label>
+									<label for="sort_period" class="fs_14">並び替え:</label>
 									<select id="sort_period" name="sort">
 										<option value="new" <?php if(isset($_GET['sort']) && $_GET['sort']==='new')echo 'selected';?>>新着順</option>
 										<option value="old" <?php if(isset($_GET['sort']) && $_GET['sort']==='old')echo 'selected';?>>古い順</option>

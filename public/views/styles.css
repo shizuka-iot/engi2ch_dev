@@ -703,6 +703,7 @@ nav h3 {
 
 .sort_wrap select {
 	margin-right: 1rem;
+	width: 10rem;
 }	
 
 .main_contents {
