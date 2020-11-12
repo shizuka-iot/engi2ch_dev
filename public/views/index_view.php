@@ -123,7 +123,7 @@
 
 								<div class="reply_input_wrap">
 									<p class="fs_12">名前を入力してください。</p>
-									<p class="fs_12">未入力の場合は"野生の名無しさん"と自動入力されます。</p>
+									<p class="fs_12">未入力の場合は"<?=h(ANONYMOUS)?>"と自動入力されます。</p>
 									<input type="text" name="reply_auther" placeholder="名前"
 									 value="<?=h($IndexCtr->getValue("reply_auther"))?>">
 								</div>
@@ -158,7 +158,7 @@
 								</div>
 
 								<div class="sort">
-									<label for="sort_period" class="fs_14">並べ替え:</label>
+									<label for="sort_period" class="fs_14">順序:</label>
 									<select id="sort_period" name="sort">
 										<option value="new" <?php if(isset($_GET['sort']) && $_GET['sort']==='new')echo 'selected';?>>新着順</option>
 										<option value="old" <?php if(isset($_GET['sort']) && $_GET['sort']==='old')echo 'selected';?>>古い順</option>
@@ -170,7 +170,7 @@
 
 							</div>
 							<div class="sort_button_wrap">
-								<button class="sort_button">条件を選択して並び替え</button>
+								<button class="sort_button">並び替え実行</button>
 							</div>
 						</form>
 					</section>
