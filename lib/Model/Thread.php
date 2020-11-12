@@ -257,7 +257,6 @@ class Thread extends \Mvc0623\Model
 		$sql = '
 			select
 				no, 
-				user_id, 
 				auther, 
 				title, 
 				body, 
@@ -292,7 +291,6 @@ class Thread extends \Mvc0623\Model
 		$sql = '
 			select
 				no, 
-				user_id, 
 				auther, 
 				title, 
 				body, 
@@ -332,7 +330,7 @@ class Thread extends \Mvc0623\Model
 		$offset = THREADS_PER_PAGE * ($page - 1);
 		$word = '%'.$search.'%';
 		$sql = 'select
-			no, user_id, auther, title, body, cat_id, fileName, thumbnail_flag, 
+			no, auther, title, body, cat_id, fileName, thumbnail_flag, 
 			thread.created_at, thread.updated_at, category.id, cat_name 
 			from thread left outer join category
 			on cat_id = category.id 
