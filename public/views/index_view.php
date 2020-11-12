@@ -22,11 +22,14 @@
 				<?php if( isset($_GET['thread']) ):?>
 					<?php $thread = $IndexCtr->getThreadFromNo();?>
 					<?php
-					$arr = [
-						["#b5b5b5", "bad", (int)h($thread->bad)],
-						["#25b7c0", "good", (int)h($thread->good)],
-					];
-					$sectorInfo = json_encode($arr);
+					if (isset($thread) && $thread !== false)
+					{
+						$arr = [
+							["#b5b5b5", "bad", (int)h($thread->bad)],
+							["#25b7c0", "good", (int)h($thread->good)],
+						];
+						$sectorInfo = json_encode($arr);
+					}
 					?>
 					<div class="thread">
 
