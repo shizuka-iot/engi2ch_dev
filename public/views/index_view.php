@@ -121,10 +121,6 @@
 								<input type="hidden" name="thread_no"
 								 value="<?=h($thread->no)?>">
 
-								<input type="hidden" name="user_id"
-								value="<?php isset($_SESSION['me']->id) ?
-												 $_SESSION['me']->id: null ?>">
-
 								<div class="reply_input_wrap">
 									<p class="fs_12">名前を入力してください。</p>
 									<p class="fs_12">未入力の場合は"野生の名無しさん"と自動入力されます。</p>
