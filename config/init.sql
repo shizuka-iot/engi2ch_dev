@@ -1,7 +1,6 @@
 drop table if exists thread;
 create table if not exists thread 
 ( no int unsigned not null auto_increment primary key,
-	user_id int unsigned,
 	auther varchar(255),
 	title varchar(255),
 	body text,
@@ -23,23 +22,21 @@ create table if not exists category
 	updated_at datetime);
 
 insert into category (cat_name, created_at, updated_at) values
-('プログラミング総合', now(), now() ),
+('エンジニア総合', now(), now() ),
+('ニュース', now(), now() ),
 ('初心者', now(), now() ),
 ('就職・転職', now(), now() ),
-('未経験', now(), now() ),
-('PHP', now(), now() ),
-('JavaScript', now(), now() ),
-('Java', now(), now() ),
-('C言語', now(), now() ),
-('C++', now(), now() ),
-('C#', now(), now() ),
-('Ruby', now(), now() ),
-('フレームワーク', now(), now() ),
-('自作アプリ', now(), now() ),
-('フリーランス', now(), now() ),
-('SNS', now(), now() ),
+('資格', now(), now() ),
+('言語', now(), now() ),
+('未経験・駆け出しエンジニア', now(), now() ),
+('WEBエンジニア', now(), now() ),
+('システムエンジニア', now(), now() ),
+('組み込み・IoT', now(), now() ),
+('ゲームプログラミング', now(), now() ),
+('RaspberryPi', now(), now() ),
+('個人開発', now(), now() ),
 ('雑談', now(), now() ),
-('その他', now(), now() );
+('ご要望・削除依頼', now(), now() );
 
 
 drop table if exists reply;
@@ -56,3 +53,6 @@ create table if not exists reply
 	updated_at datetime,
 	delete_flag tinyint(1) default 0
 );
+
+drop view if exists count_comment;
+create view count_comment as select thread_no, count(*) as comments from reply group by thread_no;
