@@ -46,7 +46,7 @@
 
 					<div class="input_item">
 						<?php $IndexCtr->showError('img')?>
-						<p><span class="require">必須</span> 画像を選択してください </p>
+						<p><span class="require">必須</span> 画像を選択してください(2MBくらいまで)</p>
 						<input type="file" name="thread_img" accept="image/*" id="myfile">
 					</div>
 
