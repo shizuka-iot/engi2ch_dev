@@ -32,9 +32,9 @@ body {
 	border-radius: 8px;
 	box-sizing: border-box;
 	margin: 1rem;
-	margin-bottom: 0;
 	padding: 1rem 2rem;
 	width: calc(100% - 2rem);
+	max-width: 800px;
 }
 .agreement_wrap h1 {
 	color: #222;
@@ -50,7 +50,7 @@ body {
 .agreement_wrap p, .agreement_wrap li {
 	font-size: 0.8rem;
 	line-height: 1.8rem;
-	letter-spacing: 3px;
+	letter-spacing: 1px;
 }
 button {
 	cursor: pointer;
@@ -391,7 +391,6 @@ nav h3 {
 	border-radius: 8px;
 	margin: 1rem 0;
 	padding: 1rem;
-	order: 2;
 }
 
 .input_item {
@@ -846,4 +845,10 @@ nav h3 {
 	.text_contents_area {
 		margin-right: 1rem;
 	}
+	.create_thread_area {
+		max-width: 600px;
+	}
+.contact_form_wrap {
+	max-width: 600px;
+}
 }/* ここまでPCビュー */
