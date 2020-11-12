@@ -22,17 +22,16 @@ create table if not exists category
 	updated_at datetime);
 
 insert into category (cat_name, created_at, updated_at) values
-('エンジニア総合', now(), now() ),
 ('ニュース', now(), now() ),
-('初心者', now(), now() ),
-('就職・転職', now(), now() ),
-('資格', now(), now() ),
-('言語', now(), now() ),
+('エンジニア総合', now(), now() ),
 ('未経験・駆け出しエンジニア', now(), now() ),
 ('WEBエンジニア', now(), now() ),
 ('システムエンジニア', now(), now() ),
 ('組み込み・IoT', now(), now() ),
-('ゲームプログラミング', now(), now() ),
+('ゲーム開発', now(), now() ),
+('就職・転職', now(), now() ),
+('資格', now(), now() ),
+('言語', now(), now() ),
 ('RaspberryPi', now(), now() ),
 ('個人開発', now(), now() ),
 ('雑談', now(), now() ),
