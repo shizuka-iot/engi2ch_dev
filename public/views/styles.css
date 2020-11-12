@@ -145,13 +145,17 @@ button {
 	border-radius: 4px;
 	height: 1.4rem;
 	margin-bottom: 0.5rem;
-	width: 60%;
+	width: 100%;
 }
-.create_thread_area textarea {
+#create_thread_title {
 	border-radius: 4px;
 	margin-bottom: 0.5rem;
-	height: 24rem;
-	width: 80%;
+	width: 100%;
+}
+#create_thread_body {
+	border-radius: 4px;
+	margin-bottom: 0.5rem;
+	width: 100%;
 }
 .create_thread_area form {
 	background-color: #eee;

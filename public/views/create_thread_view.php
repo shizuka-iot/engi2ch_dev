@@ -13,8 +13,11 @@
 					<div class="input_item">
 						<?php $IndexCtr->showError('thread_title')?>
 						<p><span class="require">必須</span> タイトルを140文字以内で入力してください </p>
-						<input type="text" name="thread_title" placeholder="タイトル (必須)"
-						 value="<?=h($IndexCtr->getValue("thread_title"))?>">
+						<textarea id="create_thread_title" 
+										name="thread_title" 
+										cols="30" rows="2" 
+						 placeholder="タイトル (必須)" 
+									 value="<?=h($IndexCtr->getValue("thread_title"))?>"></textarea>
 					</div>
 
 					<div class="input_item">
@@ -41,7 +44,10 @@
 					<div class="input_item">
 						<?php $IndexCtr->showError('thread_body')?>
 						<p><span class="require">必須</span> 本文を1000文字以内で入力してください </p>
-						<textarea name="thread_body" placeholder="本文 (必須)"><?=h($IndexCtr->getValue("thread_body"))?></textarea>
+						<textarea id="create_thread_body" 
+										name="thread_body" 
+										cols="30" rows="10" 
+						 placeholder="本文 (必須)"><?=h($IndexCtr->getValue("thread_body"))?></textarea>
 					</div>
 
 					<div class="input_item">
