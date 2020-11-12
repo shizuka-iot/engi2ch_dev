@@ -1,5 +1,5 @@
 <div class="center main">
-	<div class="container column">
+	<div class="container column center">
 		<section class="create_thread_area">
 			<h2><i class="fas fa-pencil-alt"></i>新規スレッド作成</h2>
 			<div class="create_thread_form_wrap">
@@ -25,12 +25,14 @@
 						<p><span class="require">必須</span> カテゴリを選択してください</p>
 						<div class="select_category row wrap">
 						<?php foreach($categories as $category):?>
+							<?php if($category->id !== '14'):?>
 							<div class="each_category">
 							<label>
 							<input type="radio" name="cat_id"
 							value="<?=h($category->id)?>" <?php if( $IndexCtr->getValue('cat_id') === $category->id)echo 'checked';?>>
 								<?=h($category->cat_name)?></label>
 							</div>
+							<?php endif;?>
 						<?php endforeach;?>
 						</div>
 					</div>
