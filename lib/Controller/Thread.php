@@ -157,11 +157,9 @@ class Thread extends \Mvc0623\Controller
 		$thread_no = filter_input(INPUT_POST, 'thread_no', FILTER_VALIDATE_INT);
 		$auther = filter_input(INPUT_POST, 'reply_auther');
 		$body = filter_input(INPUT_POST, 'reply_body');
-		$user_id = filter_input(INPUT_POST, 'user_id');
-		if( $user_id === '' ) $user_id = null;
 		if( $auther === '' )
 		{
-			$auther = '野生の名無しさん';
+			$auther = ANONYMOUS;
 			$this->setValue('reply_auther', $auther);
 		}
 		if( $body === '' )
@@ -171,7 +169,6 @@ class Thread extends \Mvc0623\Controller
 		return [
 			'thread_no'=>$thread_no,
 			'auther'=>$auther,
-			'user_id'=>$user_id,
 		 	'body'=>$body];
 	}
 
@@ -292,8 +289,6 @@ class Thread extends \Mvc0623\Controller
 		$auther = (string)filter_input(INPUT_POST, 'thread_auther'); 
 		$body = (string)filter_input(INPUT_POST, 'thread_body'); 
 		$cat_id = (string)filter_input(INPUT_POST, 'cat_id'); 
-		$user_id =
-		 	isset($_SESSION['me']->user_id) ? $_SESSION['me']->user_id: null;
 
 		if( $title === '' )
 		{
@@ -301,8 +296,8 @@ class Thread extends \Mvc0623\Controller
 		}
 		if( $auther === '' )
 		{
-			$this->setValue('thread_auther', '野生の名無しさん');
-			$auther = '野生の名無しさん';
+			$this->setValue('thread_auther', ANONYMOUS);
+			$auther = ANONYMOUS;
 		}
 		if( $body === '' )
 		{
@@ -313,7 +308,7 @@ class Thread extends \Mvc0623\Controller
 			$this->setError('cat_id', 'カテゴリは必須です');
 		}
 		return ['title'=>$title, 'auther'=>$auther, 
-						'body'=>$body, 'cat_id'=>$cat_id, 'user_id'=>$user_id];
+						'body'=>$body, 'cat_id'=>$cat_id];
 	}
 
 	private function _validateError()
