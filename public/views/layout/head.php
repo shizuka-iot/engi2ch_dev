@@ -16,6 +16,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?=h(SITE_TITLE)?></title>
 	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 	<!-- font awesome cssファイルなのでヘッド内で読み込む-->
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
