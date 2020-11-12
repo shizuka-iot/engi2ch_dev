@@ -1,5 +1,5 @@
 $(function() {
-  $('input[type=file]').after('<span class="show_upload_img"></span>');
+  $('input[type=file]').after('<div class="show_upload_img"></div>');
 
   // アップロードするファイルを選択
   $('input[type=file]').change(function() {
