@@ -37,7 +37,7 @@ insert into thread (
 		【コメント番号】
 		【スレッドURL】
 		【削除理由】', 
-		14, 
+		1, 
 		'001.png', 
 		0, 
 		now(), 
@@ -46,8 +46,17 @@ insert into thread (
 	('運営', 'エンジニちゃんねるへのご意見・ご要望はこちら', 
 		'平素よりエンジニちゃんねるをご利用いただきまして誠にありがとうございます。
 		ご意見・ご要望等ございましたらお気軽にこのスレッドに記載ください。', 
-		14, 
+		1, 
 		'002.png', 
+		0, 
+		now(), 
+		now()
+	),
+	('運営', '新規カテゴリの提案はこちら', 
+		'もっとカテゴリを増やしてほしい、もっとカテゴリ分けを詳細にしてほしいなど、今あるカテゴリ一覧にない新規カテゴリの希望があればこちらにコメントしてください。
+		検討させていただきます。', 
+		1, 
+		'003.png', 
 		0, 
 		now(), 
 		now()
@@ -61,20 +70,22 @@ create table if not exists category
 	updated_at datetime);
 
 insert into category (cat_name, created_at, updated_at) values
-('ニュース', now(), now() ),
-('エンジニア総合', now(), now() ),
-('未経験・駆け出しエンジニア', now(), now() ),
-('WEBエンジニア', now(), now() ),
-('システムエンジニア', now(), now() ),
-('組み込み・IoT', now(), now() ),
-('ゲーム開発', now(), now() ),
-('就職・転職', now(), now() ),
-('資格', now(), now() ),
-('言語', now(), now() ),
-('RaspberryPi', now(), now() ),
-('個人開発', now(), now() ),
-('雑談', now(), now() ),
-('ご要望・削除依頼', now(), now() );
+	('ご要望・削除依頼', now(), now() ),
+	('ニュース', now(), now() ),
+	('雑談', now(), now() ),
+	('RaspberryPi', now(), now() ),
+	('就職・転職', now(), now() ),
+	('資格', now(), now() ),
+	('言語', now(), now() ),
+	('個人開発', now(), now() ),
+	('ゲーム開発', now(), now() ),
+	('組み込み・IoT', now(), now() ),
+	('未経験・駆け出しエンジニア', now(), now() ),
+	('インフラエンジニア', now(), now() ),
+	('システムエンジニア', now(), now() ),
+	('WEBエンジニア', now(), now() ),
+	('エンジニア総合', now(), now() )
+;
 
 
 drop table if exists reply;

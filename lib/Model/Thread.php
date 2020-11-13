@@ -142,7 +142,7 @@ class Thread extends \Mvc0623\Model
 	****************************************************/
 	public function findCategoryInfo()
 	{
-		$sql = 'select * from category';
+		$sql = 'select * from category order by id desc';
 		$stmt = $this->pdo->query($sql);
 		if( $stmt === false )
 		{
@@ -252,6 +252,10 @@ class Thread extends \Mvc0623\Model
 		}
 	}
 
+
+	/****************************************************
+								話題のスレッドを取得
+	****************************************************/
 	public function selectHotTopics($quantity)
 	{
 		$sql = '
@@ -272,7 +276,7 @@ class Thread extends \Mvc0623\Model
 					on cat_id = category.id 
 				left outer join count_comment 
 					on thread.no = thread_no 
-			where thread.delete_flag = 0 and not (category.id = 14) 
+			where thread.delete_flag = 0 and not (category.id = 1) 
 			order by (good + bad) desc,
 			comments desc
 			';
@@ -286,6 +290,9 @@ class Thread extends \Mvc0623\Model
 		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
 		return $stmt->fetchAll();
 	}
+	/****************************************************
+								人気のスレッドを取得
+	****************************************************/
 	public function selectPopularThreads($quantity)
 	{
 		$sql = '
