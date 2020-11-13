@@ -39,7 +39,7 @@
 
 					<div class="input_item">
 						<?php $IndexCtr->showError('thread_auther')?>
-						<p><span class="optional">任意</span> 名前を50文字以内で入力してください。未入力の場合は"<?=h(ANONYMOUS)?>"と自動入力されます </p>
+						<p><span class="optional">任意</span> 名前を50文字以内で入力してください。<br>未入力の場合は"<?=h(ANONYMOUS)?>"と自動入力されます </p>
 						<input type="text" name="thread_auther" placeholder="名前 (任意)"
 						 value="<?=h($IndexCtr->getValue("thread_auther"))?>">
 					</div>

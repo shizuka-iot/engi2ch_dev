@@ -27,6 +27,14 @@ body {
 	flex: 1;
 }
 
+.ad {
+	background-color: #fff;
+	border-radius: 8px;
+	width: 100%;
+	margin-bottom: 1rem;
+	padding: 1rem 0;
+}
+
 .agreement_wrap {
 	background-color: #fff;
 	border-radius: 8px;
