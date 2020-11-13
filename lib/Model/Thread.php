@@ -272,7 +272,7 @@ class Thread extends \Mvc0623\Model
 					on cat_id = category.id 
 				left outer join count_comment 
 					on thread.no = thread_no 
-			where thread.delete_flag = 0 
+			where thread.delete_flag = 0 and not (category.id = 14) 
 			order by (good + bad) desc,
 			comments desc
 			';
