@@ -14,6 +14,45 @@ create table if not exists thread
 	delete_flag tinyint(1) default 0 
 );
 
+insert into thread (
+	auther, 
+	title, 
+	body, 
+	cat_id, 
+	fileName, 
+	thumbnail_flag,
+	created_at, 
+	updated_at)
+	values
+	('運営', '削除依頼はこちら', 
+		'利用規約の禁止事項に該当する書き込みや不適切だと判断される書き込みに関してこちらで削除依頼を行うことができます。
+
+		削除依頼の対象となるスレッドのカテゴリ名・スレッド名・スレッドのURL・コメント番号・削除理由をご明記の上、このスレッドにコメントしてください。
+		内容を確認した後、不適切であると判断されたスレッド(コメント)の削除対応をさせていただきます。
+
+		
+		テンプレート
+		【カテゴリ名】
+		【スレッド名】
+		【コメント番号】
+		【スレッドURL】
+		【削除理由】', 
+		14, 
+		'001.png', 
+		0, 
+		now(), 
+		now()
+	),
+	('運営', 'エンジニちゃんねるへのご意見・ご要望はこちら', 
+		'平素よりエンジニちゃんねるをご利用いただきまして誠にありがとうございます。
+		ご意見・ご要望等ございましたらお気軽にこのスレッドに記載ください。', 
+		14, 
+		'002.png', 
+		0, 
+		now(), 
+		now()
+	);
+
 drop table if exists category;
 create table if not exists category 
 ( id int unsigned not null auto_increment primary key,
@@ -55,3 +94,4 @@ create table if not exists reply
 
 drop view if exists count_comment;
 create view count_comment as select thread_no, count(*) as comments from reply group by thread_no;
+
