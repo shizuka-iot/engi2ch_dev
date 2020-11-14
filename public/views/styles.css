@@ -588,12 +588,10 @@ nav h3 {
 	color: #f19072;
 	letter-spacing: 0;
 	font-size: 1.4rem;;
-	line-height: 1rem;
 	font-family: 'ＭＳ Ｐゴシック','MS PGothic',RobotoJAA,Monapo,'IPA モナー Pゴシック',IPAMonaPGothic,Mona,'梅Pゴシック',Textar,aahub_light,sans-serif !important;
 	margin-top: 0.4rem;
 	margin-bottom: 0.5rem;
 	letter-spacing: 0;
-	width:80%;
 }
 .reply_form {
 	background-color: #ddd;
