@@ -216,8 +216,9 @@ class Thread extends \Mvc0623\Controller
 		// ソースからサイズ変換して黒画面に上書き
 		// 保存
 
-		$thumbH = round(( THUMB_W * $imgH ) / $imgW );
-		$thumb = imagecreatetruecolor(THUMB_W, $thumbH);
+		// $thumbH = round(( THUMB_W * $imgH ) / $imgW );
+		// $thumb = imagecreatetruecolor(THUMB_W, $thumbH);
+		$thumb = imagecreatetruecolor(THUMB_W, THUMB_W);
 		imagealphablending($thumb, false);
 		imagesavealpha($thumb, true);
 
@@ -233,8 +234,20 @@ class Thread extends \Mvc0623\Controller
 			$srcImg = imagecreatefrompng($savePath);
 			break;
 		}
-		imagecopyresampled(
-			$thumb, $srcImg, 0,0,0,0, THUMB_W, $thumbH, $imgW, $imgH);
+
+		if ($imgW > $imgH)
+		{
+			$src_x = round(($imgW - $imgH) / 2);
+			imagecopyresampled(
+				// $thumb, $srcImg, 0,0,0,0, THUMB_W, $thumbH, $imgW, $imgH);
+				$thumb, $srcImg, 0,0, $src_x, 0, THUMB_W, THUMB_W, $imgH, $imgH);
+		}
+		else
+		{
+			$src_y = round(($imgH - $imgW) / 2);
+			imagecopyresampled(
+				$thumb, $srcImg, 0,0, 0, $src_y, THUMB_W, THUMB_W, $imgW, $imgW);
+		}
 
 		switch($this->_imgType)
 		{
