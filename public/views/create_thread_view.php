@@ -25,7 +25,7 @@
 						<p><span class="require">必須</span> カテゴリを選択してください</p>
 						<div class="select_category row wrap">
 						<?php foreach($categories as $category):?>
-							<?php if($category->id !== '14'):?>
+							<?php if($category->id !== '1'):?>
 							<div class="each_category">
 							<label>
 							<input type="radio" name="cat_id"
