@@ -16,8 +16,7 @@
 						<textarea id="create_thread_title" 
 										name="thread_title" 
 										cols="30" rows="2" 
-						 placeholder="タイトル (必須)" 
-									 value="<?=h($IndexCtr->getValue("thread_title"))?>"></textarea>
+						 placeholder="タイトル (必須)"><?=h($IndexCtr->getValue("thread_title"))?></textarea>
 					</div>
 
 					<div class="input_item">
