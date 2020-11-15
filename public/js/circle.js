@@ -110,13 +110,11 @@ class Circle
 
 	restart()
 	{
-		/* 追加 */
-		// this.init_array();// 受け取った配列を初期化。
-		this.checkSectorValueForEdge()
 		this.setQuantities();// this.sum_of_sector_valueに量の合計を格納している。
 		this.setEachAngles();// 各扇が持つ角度を配列にセット。
 		this.setStartFinishAngles();// this.startAngles・this.finishAnglesに開始角・終了角を格納。
 		this.setHalfDegrees();
+		this.checkSectorValueForEdge()
 	}
 
 
@@ -159,7 +157,7 @@ class Circle
 	draw()
 	{
 		// デバッグが必要なら下記をアンコメント
-		// this.drawDebug();
+		this.drawDebug();
 		switch( this.type )
 		{
 			case 0:
@@ -229,6 +227,7 @@ class Circle
 		["増加度",this.increase],
 		["フラグ",this.hit_flag],
 		["hit",this.hitted],
+		["edge",this.edge_flag],
 		["sqrt_xy",this.sqrt_xy],
 		["sum_of_sector_value",this.sum_of_sector_value],
 		["this.angles",this.angles],
@@ -495,6 +494,7 @@ class Circle
 	checkSectorValueForEdge()
 	{
 		let edge_count = 0;
+		this.edge_flag = 1;
 		for (let i=0; i<this.sectorInfo.length; i++)
 		{
 			if (this.sectorInfo[i][2])
