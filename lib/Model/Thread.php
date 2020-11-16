@@ -210,13 +210,24 @@ class Thread extends \Mvc0623\Model
 	{
 		$order = $this->_generateSqlOrderByPostedValue($sort);
 		$offset = THREADS_PER_PAGE * ($page - 1);
-		$sql = 
-			'select
-			thread.no, thread.auther, thread.title, thread.body, cat_id, thread.fileName,
-			thread.thumbnail_flag, thread.created_at, thread.updated_at, 
-			category.id, category.cat_name
-			from thread left outer join category on cat_id = category.id 
-			left outer join count_comment on thread.no = thread_no 
+		$sql = '
+			select
+				thread.no, 
+				thread.auther, 
+				thread.title, 
+				thread.body, 
+				cat_id, 
+				thread.fileName,
+				thread.thumbnail_flag, 
+				thread.created_at, 
+				thread.updated_at, 
+				category.id, 
+				category.cat_name
+			from thread 
+			left outer join category 
+				on cat_id = category.id 
+			left outer join count_comment 
+				on thread.no = thread_no 
 			where thread.delete_flag = 0 ';
 		$sql .= sprintf('
 			%s limit %d offset %d', $order, THREADS_PER_PAGE, $offset);
@@ -244,11 +255,11 @@ class Thread extends \Mvc0623\Model
 		case 'old':
 			return 'order by no asc';
 		case 'popular':
-			return 'order by round ( good / (good + bad) * 100 ) desc, good desc';
+			return 'order by round( good / (good + bad) * 100 ) desc, good desc';
 		case 'comment':
 			return 'order by comments desc';
 		default:
-			return 'order by no desc';
+			return 'order by round( good / (good + bad) * 100 ) desc, good desc';
 		}
 	}
 
@@ -279,6 +290,40 @@ class Thread extends \Mvc0623\Model
 			where thread.delete_flag = 0 and not (category.id = 1) 
 			order by (good + bad) desc,
 			comments desc
+			';
+		$sql .= sprintf(' limit %d ', $quantity);
+		$stmt = $this->pdo->query($sql);
+
+		if (!$stmt)
+		{
+			return false;
+		}
+		$stmt->setFetchMode(\PDO::FETCH_CLASS, 'stdClass');
+		return $stmt->fetchAll();
+	}
+	/****************************************************
+								新着スレッドを取得
+	****************************************************/
+	public function selectNewThreads($quantity)
+	{
+		$sql = '
+			select
+				no, 
+				auther, 
+				title, 
+				body, 
+				cat_id, 
+				fileName, 
+				thumbnail_flag, 
+				thread.created_at, 
+				thread.updated_at, 
+				category.id, 
+				cat_name 
+			from thread 
+				left outer join category
+					on cat_id = category.id 
+			where thread.delete_flag = 0 
+			order by thread.no desc
 			';
 		$sql .= sprintf(' limit %d ', $quantity);
 		$stmt = $this->pdo->query($sql);

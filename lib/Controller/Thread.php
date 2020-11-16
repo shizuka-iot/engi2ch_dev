@@ -31,6 +31,14 @@ class Thread extends \Mvc0623\Controller
 
 
 	/*******************************************					
+	 * 何件取得するか引数に指定して新着スレッドを取得
+	*******************************************/					
+	public function getNewThreads($quantity)
+	{
+		$threadModel = new \Mvc0623\Model\Thread();
+		return $threadModel->selectNewThreads($quantity);
+	}
+	/*******************************************					
 	 * 何件取得するか引数に指定して話題のスレッドを取得
 	*******************************************/					
 	public function getHotTopics($quantity)

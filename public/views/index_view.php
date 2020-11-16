@@ -160,10 +160,10 @@
 								<div class="sort">
 									<label for="sort_period" class="fs_14">並び替え:</label>
 									<select id="sort_period" name="sort">
+										<option value="popular" <?php if(isset($_GET['sort']) && $_GET['sort']==='popular')echo 'selected';?>>人気順</option>
 										<option value="new" <?php if(isset($_GET['sort']) && $_GET['sort']==='new')echo 'selected';?>>新着順</option>
-										<option value="old" <?php if(isset($_GET['sort']) && $_GET['sort']==='old')echo 'selected';?>>古い順</option>
-										<option value="popular" <?php if(isset($_GET['sort']) && $_GET['sort']==='popular')echo 'selected';?>>評価の高い順</option>
 										<option value="comment" <?php if(isset($_GET['sort']) && $_GET['sort']==='comment')echo 'selected';?>>コメントの多い順</option>
+										<option value="old" <?php if(isset($_GET['sort']) && $_GET['sort']==='old')echo 'selected';?>>古い順</option>
 									</select>
 
 								</div>
@@ -228,6 +228,37 @@
 						</div>
 					<?php endif;?>
 
+					<div class="new_threads_area">
+						<h2 class="color_lb fw_400 fs_18">新着スレッド</h2>
+						<?php foreach ($newThreads as $newThread):?>
+
+							<a class="each_page_link" href="<?=h(SITE_URL."?thread=".$newThread->no)?>">
+								<div class="each_thread row">
+
+									<div class="thread_left">
+										<img src="<?=h($IndexCtr->getImgUrl($newThread->fileName, $newThread->thumbnail_flag))?>">
+									</div>
+
+									<div class="thread_right">
+										<div class="thread_contents column between">
+											<h3 class="fw_bold fs_14 color_co"><?=h($newThread->title)?></h3>
+											<p class="fs_12 color_lb2">
+												<span class="fs_12 color_lb2">
+													<i class="fas fa-comments"></i>
+													<?=h($IndexCtr->getCommentsFromThreadNo($newThread->no))?>コメント
+												</span>
+												<br>
+												<span class="bold fs_12">【<?=h($newThread->cat_name)?>】</span>
+											</p>
+										</div>
+
+									</div>
+
+								</div>
+							</a>
+							
+						<?php endforeach;?>
+					</div>
 					<div class="hot_topics_area">
 						<h2 class="color_lb fw_400 fs_18">話題のスレッド</h2>
 						<?php foreach ($hotTopics as $hotTopic):?>
