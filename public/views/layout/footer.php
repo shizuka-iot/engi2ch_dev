@@ -18,6 +18,7 @@
 
 <script src="js/vote.js"></script>
 <script src="js/scroll.js"></script>
+<script src="js/background.js"></script>
 <script src="js/show_upload_file.js"></script>
 </body>
 </html>

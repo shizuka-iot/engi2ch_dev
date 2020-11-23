@@ -7,6 +7,15 @@ body {
 	margin: 0;
 }
 
+#background_canvas {
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
 .each_category {
 	margin-right: 1rem;
 }
@@ -789,7 +798,7 @@ nav h3 {
 		order: 1;
 	}
 	.container {
-		width: 1000px;
+		width: 960px;
 	}
 	.create_thread_area button {
 		font-size: 1.8rem;

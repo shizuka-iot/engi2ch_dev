@@ -11,3 +11,4 @@
 	</div>
 
 </header>
+<canvas id="background_canvas"></canvas>
