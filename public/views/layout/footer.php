@@ -20,5 +20,11 @@
 <script src="js/scroll.js"></script>
 <script src="js/background.js"></script>
 <script src="js/show_upload_file.js"></script>
+<?php if(isset($sectorInfo)):?>
+<script>
+	let sectorInfo = <?=$sectorInfo?>;
+</script>
+<?php endif;?>
+<script src="js/canvas_update.js"></script>
 </body>
 </html>

@@ -9,6 +9,9 @@ if (typeof sectorInfo !== 'undefined')
 		circle.update();
 		Circle.clear('can');
 		circle.draw();
+		con.clearRect(0, 0, innerWidth, innerHeight);
+		backgroundUpdate();
+		backgroundDraw();
 	}
 
 	window.onload = function() 
@@ -16,3 +19,14 @@ if (typeof sectorInfo !== 'undefined')
 		mainLoop();
 	}
 }
+else
+{
+	window.onload = function mainLoop()
+	{
+		requestAnimationFrame(mainLoop);
+		con.clearRect(0, 0, innerWidth, innerHeight);
+		backgroundUpdate();
+		backgroundDraw();
+	}
+}
+

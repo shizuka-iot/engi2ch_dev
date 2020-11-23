@@ -54,6 +54,8 @@ class Logo
 			this.y = this.imgH + innerHeight <<8;
 			this.x = rand(0, innerWidth) <<8;
 		}
+
+		this.draw();
 	}
 }
 
@@ -70,7 +72,6 @@ function init()
 	{
 		imgs[i] = new Logo(img_paths[i]);
 	}
-	draw();
 }
 
 window.addEventListener('resize', function(e)
@@ -80,7 +81,7 @@ window.addEventListener('resize', function(e)
 		init();
 	});
 
-function update()
+function backgroundUpdate()
 {
 	for (let i=0; i<img_paths.length; i++)
 	{
@@ -88,7 +89,7 @@ function update()
 	}
 }
 
-function draw()
+function backgroundDraw()
 {
 	for (let i=0; i<img_paths.length; i++)
 	{
@@ -97,10 +98,12 @@ function draw()
 }
 init();
 
+/*
 window.onload = function mainLoop()
 {
 	requestAnimationFrame(mainLoop);
 	con.clearRect(0, 0, innerWidth, innerHeight);
-	update();
-	draw();
+	backgroundUpdate();
+	backgroundDraw();
 }
+*/

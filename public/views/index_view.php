@@ -323,9 +323,3 @@
 	</div>
 </div>
 
-<?php if(isset($sectorInfo)):?>
-<script>
-	const sectorInfo = <?=$sectorInfo?>;
-</script>
-<script src="js/canvas_update.js"></script>
-<?php endif;?>
