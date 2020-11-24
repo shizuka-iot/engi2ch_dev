@@ -54,8 +54,6 @@ class Logo
 			this.y = this.imgH + innerHeight <<8;
 			this.x = rand(0, innerWidth) <<8;
 		}
-
-		this.draw();
 	}
 }
 
@@ -64,6 +62,8 @@ let imgs = [];
 let img_paths = [];
 function init()
 {
+	can.width = window.innerWidth;	
+	can.height = window.innerHeight;	
 	for (let i=0; i<MAX_IMGS; i++)
 	{
 		img_paths[i] = "../logo/" + zeroPadding(i+1, 3) + ".png";
@@ -97,6 +97,7 @@ function backgroundDraw()
 	}
 }
 init();
+setTimeout(init, 2000);
 
 /*
 window.onload = function mainLoop()
