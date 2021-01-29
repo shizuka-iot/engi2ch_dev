@@ -1,2 +1,3 @@
 /config/.htpasswd
 /config/common.php
+/lib/recaptcha.php
