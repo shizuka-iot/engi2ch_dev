@@ -9,6 +9,7 @@ if( !function_exists('imagecreatetruecolor') )
 
 require __DIR__.'/../lib/functions.php';
 require __DIR__.'/common.php';
+require __DIR__.'/secret.php';
 require __DIR__.'/autoload.php';
 
 session_start();
