@@ -22,11 +22,11 @@
 * スレタイ検索
 * カテゴリ検索
 * 並び替え（人気順・新着順・コメントの多い順・古い順） 
-![search](engi2ch_sample01.gif)  
+![search](https://raw.githubusercontent.com/shizuka-iot/imgs/main/engi2ch_sample01.gif)  
 
 * ページネーション
 * 存在しないページのurlを入力すると専用の404ページを表示
 * スレッドやコメントにいいね・悪いねの評価が出来ます。  
 	円グラフでその割合を確認できます。  
 	Ajax通信で非同期でDBの値と画面を更新します。 
-![good_button](engi2ch_sample02.gif)
+![good_button](https://raw.githubusercontent.com/shizuka-iot/imgs/main/engi2ch_sample02.gif)
