@@ -1,2 +1,2 @@
 /config/.htpasswd
-/config/common.php
+/config/secret.php
