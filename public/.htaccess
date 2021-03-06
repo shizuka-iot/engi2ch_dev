@@ -11,6 +11,8 @@
 # RewriteRule ^public/$ /mvc/bbs/0623/public/contact.php [L,R=301]
 
 # RewriteCond は条件指定　!は否定 -fはファイルが存在したらtrue
+RewriteRule ^about.php(.+)$ /404.php [L,R=301]
+
 RewriteRule ^contact.php(.+)$ /404.php [L,R=301]
 
 RewriteRule ^create_thread.php(.+)$ /404.php [L,R=301]
