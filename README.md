@@ -11,8 +11,7 @@
 * OS Raspberry Pi OS (debian 10.6)
 * Apache2
 * PHP 7.3.19-1
-* Laravel 7.30.4
-* jQuery
+* jQuery(Ajax)
 * MariaDB 15.1
 * CanvasAPI
 
