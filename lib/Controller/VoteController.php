@@ -12,34 +12,34 @@ class VoteController extends \Mvc0623\Controller
 	// token: トークン
 	// postで送られてきたということはスーパーグローバルなので
 	// $_POST[キー]で取り出せる
+
+	/*
+	 * good/badボタンが押されたときの処理
+	 */
 	public function post()
 	{
-		if( !isset($_POST['mode']) )
-		{
+		if( !isset($_POST['mode']) ) {
 			throw new \Exception('mode not set');
 		}
 
 		return $this->_vote();
 	}
 
+
+	/*
+	 * good/badをDBに書き込み
+	 */
 	private function _vote()
 	{
-		if( !isset($_POST['id']) && !isset($_POST['thread_no']))
-		{
-			echo $_POST['id'];
-			echo '<br>';
-			echo $_POST['thread_no'];
-			exit;
+		if( !isset($_POST['id']) && !isset($_POST['thread_no'])) {
 			throw new \Exception('id no set');
 		}
 
-		if (isset($_POST['thread_no']))
-		{
+		if (isset($_POST['thread_no'])) {
 			$threadModel = new \Mvc0623\Model\Thread();
 			return $threadModel->vote($_POST);
 		}
-		else
-		{
+		else {
 			$ReplyModel = new \Mvc0623\Model\Reply();
 			return $ReplyModel->vote($_POST);
 		}
