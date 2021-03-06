@@ -7,14 +7,12 @@ class Model
 
 	public function __construct()
 	{
-		try
-		{
+		try	{
 			$this->pdo = new \PDO(DSN, DB_USER, DB_PASS);
 			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		}
-		catch(\PDOException $e)
-		{
-			echo $e->getMessage();
+		catch(\PDOException $e)	{
+			// echo $e->getMessage();
 			exit;
 		}
 	}
