@@ -27,8 +27,6 @@ class Page extends \Mvc0623\Controller\Thread
 	private $_to; // 何ページまで
 
 
-
-
 	/*
 	 * コンストラクタ
 	 * ここで各プロパティに値をセット
@@ -39,13 +37,11 @@ class Page extends \Mvc0623\Controller\Thread
 		$val = $this->_validate(); // getできたページの値を検証
 
 		// DB接続。例外処理。
-		try
-		{
+		try {
 			$Thread = new \Mvc0623\Model\Thread();
 			$count = $Thread->countSelectedThreads($val);
 		}
-		catch(\Exception $e)
-		{
+		catch (\Exception $e) {
 			echo $e->getMessage();
 		}
 
@@ -59,26 +55,20 @@ class Page extends \Mvc0623\Controller\Thread
 	}
 
 
-
-
 	/*
 	 * getできたページの値を検証
-	 * filter_inputを使ってもいいかもしれない。
 	 */
 	private function _validate()
 	{
 		$category = filter_input(INPUT_GET, 'category');
 		$search = filter_input(INPUT_GET, 'search');
-
 		$this->page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
-		if( is_null($this->page) )
-		{
+
+		if (is_null($this->page)) {
 			$this->page = 1;
 		}
 		return ['category'=>$category, 'search'=>$search, 'page'=>$this->page];
 	}
-
-
 
 
 	/*
@@ -91,34 +81,21 @@ class Page extends \Mvc0623\Controller\Thread
 		// 表示するのは1 …3 4 5 6 7 …最後という風にする。
 		// current_page 
 		$val = $this->_validate();
-		// var_dump($val);
-		if( !is_null($val['category']) && $val['category'] !== '' )
-		{
+
+		if( !is_null($val['category']) && $val['category'] !== '' ) {
 			$word = 'category='.$val['category'].'&';
 		}
-		else if( !is_null($val['search']) && $val['search'] !== '' )
-		{
+		else if( !is_null($val['search']) && $val['search'] !== '' ) {
 			$word = 'search='.$val['search'].'&';
 		}
-		else
-		{
+		else {
 			$word = '';
 		}
-		// var_dump($word);
 
-		if( $this->_totalThreads === 0 )
-		{
+		if ($this->_totalThreads === 0) {
 			$html = '記事がありません';
 		}
-		else
-		{
-			/*
-			$html = '<p>全'.$this->_totalThreads.'件中、';
-			$html.= $this->_from.'〜'.$this->_to.'件を表示しています。';
-			$html.= '</p>';
-
-			$html.= '<div class="row page_numbers between">';
-			 */
+		else {
 			$html = <<<EOD
 			<p>全{$this->_totalThreads}件中、
 				{$this->_from}〜{$this->_to}件を表示しています。
@@ -128,13 +105,8 @@ EOD;
 
 			/* prev */
 			$html .= '<div class="prev_page_wrap">';
-			if( $this->page > 1 )
-			{
-				/*
-				$html .= '<a class="prev_page" href="?'.$word.'page='.($this->page-1).'">';
-				$html .= '<div class="center">前へ</div>';
-				$html .= '</a>';
-				 */
+
+			if( $this->page > 1 ) {
 				// ヒアドキュメント内で演算は無理なので外で演算する
 				$prev_page = $this->page - 1;
 				$html .= <<<EOL
@@ -145,27 +117,23 @@ EOL;
 			}
 			$html .= '</div>';
 
-
 			/* ページリンクを格納する領域 */
 			$html.= '<div class="row page_number_wrap">';
 
 			/* １ページ */
-			if( $this->page === 1 )
-			{
+			if ($this->page === 1) {
 				$html .= '<span class="current_page">';
 				$html .= '<div class="center first_page page_number">1</div>';
 				$html .= '</span>';
 			}
-			else
-			{
+			else {
 				$html .= '<a href="?'.$word.'page=1">';
 				$html .= '<div class="center first_page page_number">1</div>';
 				$html .= '</a>';
 			}
 
 			/* ページが飛んでたら...を表示 */
-			if( ($this->page - 2) > 2)
-			{
+			if (($this->page - 2) > 2) {
 				$html .= '<span class="space">';
 				$html .= '<div class="center page_span page_number">...</div>';
 				$html .= '</span>';
@@ -173,18 +141,14 @@ EOL;
 
 
 			/* ループでページリンクを生成 */
-			for($i=$this->page - 2; $i<=$this->page + 2; $i++)
-			{
-				if($i > 1 && $i < $this->_totalPages)
-				{
-					if( $i === $this->page )
-					{
+			for($i=$this->page - 2; $i<=$this->page + 2; $i++) {
+				if ($i > 1 && $i < $this->_totalPages) {
+					if ($i === $this->page) {
 						$html .= '<span class="current_page">';
 						$html .= '<div class="center page_number">'.$i.'</div>';
 						$html .= '</span>';
 					}
-					else
-					{
+					else {
 						$html .= '<a href="?'.$word.'page='.$i.'">';
 						$html .= '<div class="center page_number">'.$i.'</div>';
 						$html .= '</a>';
@@ -193,24 +157,20 @@ EOL;
 			}
 
 			/* ページが飛んでたら...を表示 */
-			if( $this->_totalPages > ($this->page + 3) )
-			{
+			if ($this->_totalPages > ($this->page + 3)) {
 				$html .= '<span class="space">';
 				$html .= '<div class="center page_span page_number">...</div>';
 				$html .= '</span>';
 			}
 
 			/* 最終ページ */
-			if( $this->_totalPages > 1 )
-			{
-				if( $this->page === $this->_totalPages )
-				{
+			if( $this->_totalPages > 1 ) {
+				if( $this->page === $this->_totalPages ) {
 					$html .= '<span class="current_page">';
 					$html .= '<div class="center last_page page_number">'.$this->_totalPages.'</div>';
 					$html .= '</span>';
 				}
-				else
-				{
+				else {
 					$html .= '<a href="?'.$word.'page='.$this->_totalPages.'">';
 					$html .= '<div class="center last_page page_number">'.$this->_totalPages.'</div>';
 					$html .= '</a>';
@@ -218,21 +178,18 @@ EOL;
 			}
 			$html .= '</div>';
 
-
 			/* 次へ */
 			$html .= '<div class="next_page_wrap">';
-			if( $this->page < $this->_totalPages )
-			{
+
+			if( $this->page < $this->_totalPages ) {
 				$html .= '<a class="next_page_link" href="?'.$word.'page='.($this->page+1).'">';
 				$html .= '<div class="center next_page">次へ</div>';
 				$html .= '</a>';
 			}
 			$html .= '</div>';
 			$html .= '</div>';
-				
 		}
 		echo $html;
-
 	}
 }
 ?>
