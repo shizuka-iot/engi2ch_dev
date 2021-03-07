@@ -346,13 +346,25 @@ class Thread extends \Mvc0623\Controller
 		if ($title === '') {
 			$this->setError('thread_title', 'タイトルは必須です');
 		}
+		elseif (mb_strlen($title) > 140) {
+			$this->setError('thread_title', 'タイトルは140文字以内で入力してください');
+		}
+
 		if ($auther === '') {
 			$this->setValue('thread_auther', ANONYMOUS);
 			$auther = ANONYMOUS;
 		}
+		elseif (mb_strlen($auther) > 50) {
+			$this->setError('thread_auther', '名前は50文字以内で入力してください');
+		}
+
 		if ($body === '') {
 			$this->setError('thread_body', '本文は必須です');
 		}
+		elseif (mb_strlen($body) > 1000) {
+			$this->setError('thread_body', '本文は1000文字以内で入力してください');
+		}
+
 		if ($cat_id === '') {
 			$this->setError('cat_id', 'カテゴリは必須です');
 		}
