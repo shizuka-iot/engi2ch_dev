@@ -43,7 +43,13 @@
 							<div class="thread_contents column">
 
 								<div class="center">
-									<img src="<?=h($IndexCtr->getImgUrl($thread->fileName, 0))?>">
+									<img src="<?php 
+						if (file_exists($IndexCtr->getImgUrl($thread->fileName, 0))) {
+							echo h($IndexCtr->getImgUrl($thread->fileName, 0));
+						} else {
+							echo h(SITE_URL . '/imgs/no_image.jpg');
+						} 
+						?>">
 								</div>
 
 								<div class="text_and_vote">
@@ -243,8 +249,8 @@
 
 									<div class="thread_left">
 										<img src="<?php 
-							if (file_exists($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag))) {
-								echo h($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag));
+							if (file_exists($IndexCtr->getImgUrl($newThread->fileName, $newThread->thumbnail_flag))) {
+								echo h($IndexCtr->getImgUrl($newThread->fileName, $newThread->thumbnail_flag));
 							} else {
 								echo h(SITE_URL . '/imgs/no_image.jpg');
 							} 
@@ -280,8 +286,8 @@
 
 									<div class="thread_left">
 										<img src="<?php 
-							if (file_exists($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag))) {
-								echo h($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag));
+							if (file_exists($IndexCtr->getImgUrl($hotTopic->fileName, $hotTopic->thumbnail_flag))) {
+								echo h($IndexCtr->getImgUrl($hotTopic->fileName, $hotTopic->thumbnail_flag));
 							} else {
 								echo h(SITE_URL . '/imgs/no_image.jpg');
 							} 
