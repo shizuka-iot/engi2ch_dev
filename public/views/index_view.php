@@ -242,7 +242,13 @@
 								<div class="each_thread row">
 
 									<div class="thread_left">
-										<img src="<?=h($IndexCtr->getImgUrl($newThread->fileName, $newThread->thumbnail_flag))?>">
+										<img src="<?php 
+							if (file_exists($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag))) {
+								echo h($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag));
+							} else {
+								echo h(SITE_URL . '/imgs/no_image.jpg');
+							} 
+							?>">
 									</div>
 
 									<div class="thread_right">
@@ -273,7 +279,13 @@
 								<div class="each_thread row">
 
 									<div class="thread_left">
-										<img src="<?=h($IndexCtr->getImgUrl($hotTopic->fileName, $hotTopic->thumbnail_flag))?>">
+										<img src="<?php 
+							if (file_exists($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag))) {
+								echo h($IndexCtr->getImgUrl($thread->fileName, $thread->thumbnail_flag));
+							} else {
+								echo h(SITE_URL . '/imgs/no_image.jpg');
+							} 
+							?>">
 									</div>
 
 									<div class="thread_right">
