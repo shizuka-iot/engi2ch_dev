@@ -1,4 +1,4 @@
-<script src="https://www.google.com/recaptcha/api.js?render=6LedYN8ZAAAAAFuh-xKgM4Jztp6EUsTwQv0T9vDQ"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LcOsHYaAAAAAB1Ga_gxj4jw42m_ulPBjb1XjXto"></script>
 <script src="js/recaptcha.js"></script>
 
 <div class="center main">
