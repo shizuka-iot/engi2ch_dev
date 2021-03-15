@@ -60,6 +60,7 @@ class Page extends \Mvc0623\Controller\Thread
 	 */
 	private function _validate()
 	{
+		$sort = filter_input(INPUT_GET, 'sort');
 		$category = filter_input(INPUT_GET, 'category');
 		$search = filter_input(INPUT_GET, 'search');
 		$this->page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
@@ -67,7 +68,12 @@ class Page extends \Mvc0623\Controller\Thread
 		if (is_null($this->page)) {
 			$this->page = 1;
 		}
-		return ['category'=>$category, 'search'=>$search, 'page'=>$this->page];
+		return [
+			'category'=>$category, 
+			'search'=>$search, 
+			'sort'=>$sort, 
+			'page'=>$this->page
+		];
 	}
 
 
@@ -85,11 +91,16 @@ class Page extends \Mvc0623\Controller\Thread
 		if( !is_null($val['category']) && $val['category'] !== '' ) {
 			$word = 'category='.$val['category'].'&';
 		}
-		else if( !is_null($val['search']) && $val['search'] !== '' ) {
+		elseif( !is_null($val['search']) && $val['search'] !== '' ) {
 			$word = 'search='.$val['search'].'&';
 		}
 		else {
 			$word = '';
+		}
+
+		// 並び替えの指定があれば$wordに追記
+		if( !is_null($val['sort']) && $val['sort'] !== '' ) {
+			$word .= 'sort='.$val['sort'].'&';
 		}
 
 		if ($this->_totalThreads === 0) {
